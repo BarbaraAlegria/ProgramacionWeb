@@ -1,0 +1,33 @@
+#menu{
+    background-color: gray;
+    width: 20%;
+    float: left;
+    height: 600px;
+    padding-left: 100px;
+    padding-top: 100px;
+}
+
+.descripcion{
+    background-color: rgb(157, 195, 238);
+
+}
+.logo img{
+    height: 110px;
+}
+.col-6 img{
+    padding: 10px; margin: 10px; border: 2px solid black; float: right; width: 350px;
+    
+}
+
+.col-4 img{
+    
+
+    height: 250px;
+        
+    width: 285px;
+        
+    object-fit: cover;
+        
+    
+
+}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=, initial-scale=1.0">
+	<title>Taller Mecánico Ensigna </title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+		integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js"
+		integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i"
+		crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+	<!--- Logo-->
+	<nav class="navbar navbar-expand-lg bg-body-tertiary">
+		<div class="container">
+			<nav class="navbar bg-body-tertiary">
+				<div class="container">
+					<a class="navbar-brand" href="#">
+						<img src="imagen/logotaller.jpg" alt="logotaller" width="100" height="80">
+					</a>
+				</div>
+			</nav>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<!--- Menu parte superior-->
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="principal.html">Inicio</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="contacto.html">Contacto</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link" href="servicio.html">
+							Servicio
+						</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link" href="sesion.html">
+							Sesión
+						</a>
+					</li>
+				</ul>
+				<form class="d-flex" role="search">
+					<input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+					<button class="btn btn-outline-success" type="submit">Buscar</button>
+				</form>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<h2 class="text-center my-5 fw-light">Atención Clientes</h2>
+		<!-- Tabla -->
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>Tipo de atención</th>
+					<th>Monto aproximado</th>
+					<th>Marca</th>
+					<th>Modelo de Auto</th>
+					<th>Color Auto</th>
+					<th>Imagen</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Axel</td>
+					<td>Loaiza</td>
+					<td>Mantenimiento</td>
+					<td>10.000</td>
+					<td>Nissan</td>
+					<td>V16</td>
+					<td>Negro</td>
+					<td>
+						<img src="imagen/nissan.jpg">
+					</td>
+					<td>
+						<button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+							data-target="#modalAgregar">Agregar</button>
+						<br>
+						<br>
+						<button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+							data-target="#modalModificar">Modificar</button>
+						<br>
+						<br>
+						<button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+							data-target="#modalEliminar">Rechazar</button>
+					</td>
+				</tr>
+			</tbody>
+
+			<tbody>
+				<tr>
+					<td>Axel</td>
+					<td>Loaiza</td>
+					<td>Mantenimiento</td>
+					<td>10.000</td>
+					<td>Nissan</td>
+					<td>V16</td>
+					<td>Negro</td>
+					<td>
+						<img src="imagen/nissan.jpg">
+					</td>
+					<td>
+						<button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+							data-target="#modalAgregar">Agregar</button>
+						<br>
+						<br>
+						<button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+							data-target="#modalModificar">Modificar</button>
+						<br>
+						<br>
+						<button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+							data-target="#modalEliminar">Rechazar</button>
+					</td>
+				</tr>
+			</tbody>
+
+		</table>
+
+		<!-- Modales para agregar, modificar y eliminar registros -->
+		<div class="modal fade" id="modalAgregar" tabindex="-1" role="dialog" aria-labelledby="modalAgregarLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modalAgregarLabel">Agregar registro</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<!-- Formulario para agregar un registro -->
+						<form>
+							<div class="form-group">
+								<label for="nombre">Nombre:</label>
+								<input type="text" class="form-control" id="nombre">
+							</div>
+							<div class="form-group">
+								<label for="apellido">Apellido:</label>
+								<input type="text" class="form-control" id="apellido">
+							</div>
+							<div class="form-group">
+								<label for="edad">Edad:</label>
+								<input type="text" class="form-control" id="edad">
+							</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="modalModificar" tabindex="-1" role="dialog" aria-labelledby="modalModificarLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title"
