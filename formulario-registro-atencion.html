@@ -12,6 +12,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js"
     integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i"
     crossorigin="anonymous"></script>
+    <script src="js/jquery-3.6.4.min.js"></script>
+    <script src="js/validaciones.js"></script>
 
 </head>
 
@@ -62,10 +64,15 @@
   <!--- Inicio de sesión-->
   <div class="container">
     <h2 class="text-center my-5 fw-light">Registro de atención del mecánico</h2>
-    <form>
+
+
+    <form class="row" action="#" enctype="application/x-www-form-urlencoded" method="POST" id="registroAtencion"
+    novalidate>>
       <div class="form-group">
         <label for="nombre">Nombre del cliente:</label>
         <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre del cliente">
+        <div class="valid-feedback"> Nombre correcto</div>
+        <div class="invalid-feedback"> El largo del Nombre debe ser entre 2 y 30 caracteres</div>
       </div>
       <br>
       <div class="form-group">
@@ -76,21 +83,30 @@
           <option value="Reparación">Reparación</option>
           <option value="Diagnóstico">Diagnóstico</option>
         </select>
+        <div class="valid-feedback"> Correcto</div>
+        <div class="invalid-feedback"> Debe seleccionar una opcion</div>
       </div>
       <br>
       <div class="form-group">
         <label for="monto">Monto aproximado:</label>
         <input type="text" class="form-control" id="monto" placeholder="Ingrese el monto aproximado">
+        <div class="valid-feedback"> Correcto</div>
+        <div class="invalid-feedback"> Debe ingresar un monto</div>
       </div>
+      
       <br>
       <div class="form-group">
         <label for="modelo-auto">Modelo del auto:</label>
         <input type="text" class="form-control" id="modelo-auto" placeholder="Ingrese el modelo del auto">
+        <div class="valid-feedback"> Correcto</div>
+        <div class="invalid-feedback"> Debe ingresar el modelo</div>
       </div>
       <br>
       <div class="form-group">
         <label for="color-auto">Color del auto:</label>
         <input type="text" class="form-control" id="color-auto" placeholder="Ingrese el color del auto">
+        <div class="valid-feedback"> Correcto</div>
+        <div class="invalid-feedback"> Debe ingresar el color</div>
       </div>
       <br>
       <div class="form-group">
@@ -102,9 +118,93 @@
       <center><a href="formulario-registro-atencion.html"><button type="submit"
             class="btn btn-primary">Registrar</button></a></center>
       <br>
+
+      <br>
+      <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás" value="volver atrás"></center>
+      
+      <br>
       <br>
     </form>
   </div>
 </body>
 
 </html>
+<script>
+  $(document).ready(function(){
+
+    //alert("JQUERY OK");
+    $("#registroAtencion").submit(function(event){
+
+      event.preventDefault();
+      var nombre = $("#nombre").val();
+
+      //validar nombre
+      if (!validarLargoNombre(nombre)) {
+        alert("El largo del Nombre debe ser entre 2 y 30 caracteres");
+        $("#nombre").addClass("is-invalid");
+        $("#nombre").removeClass("is-valid");
+      }
+      else {
+        $("#nombre").addClass("is-valid");
+        $("#nombre").removeClass("is-invalid");
+      }
+
+      //validar seleccion de atención
+
+
+      if ($("#tipo-atencion").val() == "") {
+        alert("Debe seleccionar una opción");
+        $("#tipo-atencion").addClass("is-invalid");
+        $("#tipo-atencion").removeClass("is-valid");
+      }
+      else {
+        $("#tipo-atencion").addClass("is-valid");
+        $("#tipo-atencion").removeClass("is-invalid");
+      }
+
+
+       //Validar monto aprox
+       if($("#monto").val() == "")
+      {
+        alert("Debe ingresar un monto");
+        $("#monto").addClass("is-invalid");
+        $("#monto").removeClass("is-valid");
+      }
+      else {
+        $("#monto").addClass("is-valid");
+        $("#monto").removeClass("is-invalid");
+      }
+
+
+       //Validar modelo del auto
+       if($("#modelo-auto").val() == "")
+      {
+        alert("Debe ingresar el modelo");
+        $("#modelo-auto").addClass("is-invalid");
+        $("#modelo-auto").removeClass("is-valid");
+      }
+      else {
+        $("#modelo-auto").addClass("is-valid");
+        $("#modelo-auto").removeClass("is-invalid");
+      }
+
+       //Validar color del auto
+       if($("#color-auto").val() == "")
+      {
+        alert("Debe ingresar el color del auto");
+        $("#color-auto").addClass("is-invalid");
+        $("#color-auto").removeClass("is-valid");
+      }
+      else {
+        $("#color-auto").addClass("is-valid");
+        $("#color-auto").removeClass("is-invalid");
+      }
+
+    });
+
+
+
+
+
+  });
+</script>
