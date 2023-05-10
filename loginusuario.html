@@ -8,6 +8,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
+  <script src="js/jquery-3.6.4.min.js"></script>
+  <script src="js/validaciones.js"></script>
+
 </head>
 
 <body>
@@ -51,36 +54,46 @@
         </div>
       </nav>
     </div>
+    <form class="row" action="#" enctype="application/x-www-form-urlencoded" method="POST" id="loginUsuario"
+      novalidate>
 
-    <div class="container-fluid">
-      <h2 class="text-center my-5 fw-light">Inicio Usuario</h2>
-      <div class="row">
-        <div class="text-center">
-          <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Correo Electrónico</label>
+      <div class="container-fluid">
+        <h2 class="text-center my-5 fw-light">Inicio Usuario</h2>
+        <div class="row">
+          <div class="text-center">
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+              <label for="floatingInput">Correo Electrónico</label>
+              <div class="valid-feedback"> Correcto</div>
+              <div class="invalid-feedback"> Correo inválido</div>
+            </div>
+            <div class="form-floating">
+              <input type="nombre" class="form-control" id="nombre" placeholder="Nombre">
+              <label for="nombre">Nombre</label>
+              <div class="valid-feedback"> Correcto</div>
+              <div class="invalid-feedback"> nombre debe ser en tre 2 y 20 caracteres</div>
+            </div>
+            <br>
+            <div class="form-floating">
+              <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+              <label for="floatingPassword">Contraseña</label>
+              <div class="valid-feedback"> Correcto</div>
+              <div class="invalid-feedback"> Debe ingresar una contraseña</div>
+            </div>
+            <br>
+            <center><a href="loginprincipal.html"><button type="submit" class="btn btn-primary">Registrar</button></a>
+            </center>
+            <br>
+            <br>
+            <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás"
+                value="volver atrás"></center>
+            <br>
+            <br>
+
           </div>
-          <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Nombre">
-            <label for="floatingPassword">Nombre</label>
-          </div>
-          <br>
-          <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Contraseña</label>
-          </div>
-          <br>
-          <center><a href="loginprincipal.html"><button type="submit"
-                class="btn btn-primary">Registrar</button></a></center>
-          <br>
-          <br>
-          <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás" value="volver atrás"></center>  
-          <br>
-          <br>
-              
         </div>
       </div>
-    </div>
+    </form>
     <section>
 
     </section>
@@ -90,3 +103,76 @@
 </body>
 
 </html>
+<script>
+
+  $(document).ready(function () {
+
+    //alert("JQUERY OK");
+    $("#loginUsuario").submit(function (event) {
+
+      event.preventDefault();
+      var nombre = $("#nombre").val();
+      var validarNombre = false;
+      var validarCorreo = false;
+      var validarPass = false;
+
+      //validar nombre
+      if (!validarLargoNombre(nombre)) {
+        alert("El largo del Nombre debe ser entre 2 y 20 caracteres");
+        $("#nombre").addClass("is-invalid");
+        $("#nombre").removeClass("is-valid");
+      }
+      else {
+        $("#nombre").addClass("is-valid");
+        $("#nombre").removeClass("is-invalid");
+        validarNombre = true;
+      }
+
+     
+      //Validar correo
+      var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+
+      if (regex.test($("#floatingInput").val().trim())) {
+        $("#floatingInput").addClass("is-valid");
+        $("#floatingInput").removeClass("is-invalid");
+        validarCorreo = true;
+
+      } else {
+        alert('La direccón de correo no es válida');
+        $("#floatingInput").addClass("is-invalid");
+        $("#floatingInput").removeClass("is-valid");
+      }
+
+      
+      
+
+      //Validar contraseña vacia
+      if ($("#floatingPassword").val() == "") {
+        alert("Debe ingresar su contraseña ");
+        $("#floatingPassword").addClass("is-invalid");
+        $("#floatingPassword").removeClass("is-valid");
+      }
+    else{
+       
+        $("#floatingPassword").addClass("is-valid");
+        $("#floatingPassword").removeClass("is-invalid");
+        validarPass = true;
+        
+      }
+      if (validarCorreo == true &&  validarPass== true && validarNombre== true){
+        alert('Usuario Validado');
+        $(location).prop("href","loginprincipal.html");
+
+
+      }
+
+
+     
+    });
+
+
+
+
+
+  });
+</script>

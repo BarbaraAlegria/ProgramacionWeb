@@ -7,9 +7,17 @@ function validarLargoNombre(nombre){
     return false;
 }
 
-function validarEdad(edad){
+function validarLargoRut(rut){
 
-    if(edad >= 18 && edad <= 35)
+    if(rut.length >= 9 && rut.length <= 10)
+    {
+        return true;
+    }
+    return false;
+}
+function validarLargoApellido(apellido){
+
+    if(apellido.length >=2 && apellido.length <=30)
     {
         return true;
     }

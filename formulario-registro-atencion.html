@@ -12,8 +12,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js"
     integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i"
     crossorigin="anonymous"></script>
-    <script src="js/jquery-3.6.4.min.js"></script>
-    <script src="js/validaciones.js"></script>
+  <script src="js/jquery-3.6.4.min.js"></script>
+  <script src="js/validaciones.js"></script>
 
 </head>
 
@@ -67,7 +67,7 @@
 
 
     <form class="row" action="#" enctype="application/x-www-form-urlencoded" method="POST" id="registroAtencion"
-    novalidate>>
+      novalidate>>
       <div class="form-group">
         <label for="nombre">Nombre del cliente:</label>
         <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre del cliente">
@@ -93,7 +93,7 @@
         <div class="valid-feedback"> Correcto</div>
         <div class="invalid-feedback"> Debe ingresar un monto</div>
       </div>
-      
+
       <br>
       <div class="form-group">
         <label for="modelo-auto">Modelo del auto:</label>
@@ -120,8 +120,9 @@
       <br>
 
       <br>
-      <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás" value="volver atrás"></center>
-      
+      <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás"
+          value="volver atrás"></center>
+
       <br>
       <br>
     </form>
@@ -130,10 +131,10 @@
 
 </html>
 <script>
-  $(document).ready(function(){
+  $(document).ready(function () {
 
     //alert("JQUERY OK");
-    $("#registroAtencion").submit(function(event){
+    $("#registroAtencion").submit(function (event) {
 
       event.preventDefault();
       var nombre = $("#nombre").val();
@@ -163,9 +164,8 @@
       }
 
 
-       //Validar monto aprox
-       if($("#monto").val() == "")
-      {
+      //Validar monto aprox
+      if ($("#monto").val() == "") {
         alert("Debe ingresar un monto");
         $("#monto").addClass("is-invalid");
         $("#monto").removeClass("is-valid");
@@ -176,9 +176,8 @@
       }
 
 
-       //Validar modelo del auto
-       if($("#modelo-auto").val() == "")
-      {
+      //Validar modelo del auto
+      if ($("#modelo-auto").val() == "") {
         alert("Debe ingresar el modelo");
         $("#modelo-auto").addClass("is-invalid");
         $("#modelo-auto").removeClass("is-valid");
@@ -188,9 +187,8 @@
         $("#modelo-auto").removeClass("is-invalid");
       }
 
-       //Validar color del auto
-       if($("#color-auto").val() == "")
-      {
+      //Validar color del auto
+      if ($("#color-auto").val() == "") {
         alert("Debe ingresar el color del auto");
         $("#color-auto").addClass("is-invalid");
         $("#color-auto").removeClass("is-valid");

@@ -14,6 +14,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js"
     integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i"
     crossorigin="anonymous"></script>
+  <script src="js/jquery-3.6.4.min.js"></script>
+  <script src="js/validaciones.js"></script>
 
 </head>
 
@@ -66,25 +68,34 @@
   <div class="container">
     <h2 class="text-center my-5 fw-light">Formulario de registro de mecánicos</h2>
 
-    <form>
+    <form class="row" action="#" enctype="application/x-www-form-urlencoded" method="POST" id="formRegistroMecanico"
+      novalidate>
       <div class="form-group">
         <label for="nombre">Nombre:</label>
         <input type="text" class="form-control" id="nombre" name="nombre" required>
+        <div class="valid-feedback"> Correcto</div>
+        <div class="invalid-feedback"> nombre debe ser en tre 2 y 20 caracteres</div>
       </div>
       <br>
       <div class="form-group">
         <label for="apellido">Apellido:</label>
         <input type="text" class="form-control" id="apellido" name="apellido" required>
+        <div class="valid-feedback"> Correcto</div>
+        <div class="invalid-feedback"> Debe tener entre 2 y 20 caracteres</div>
       </div>
       <br>
       <div class="form-group">
         <label for="email">Correo electrónico:</label>
         <input type="email" class="form-control" id="email" name="email" required>
+        <div class="valid-feedback"> Correcto</div>
+        <div class="invalid-feedback"> Correo inválido</div>
       </div>
       <br>
       <div class="form-group">
-        <label for="email">Rut</label>
-        <input type="email" class="form-control" id="email" name="email" required>
+        <label for="rut">Rut</label>
+        <input type="email" class="form-control" id="rut" name="rut" required>
+        <div class="valid-feedback"> Correcto</div>
+        <div class="invalid-feedback"> Debe tenr entre 9 y 10 caracteres</div>
       </div>
       <br>
       <div class="form-group">
@@ -95,18 +106,23 @@
           <option value="mecánica de motores">Mecánica de Motores</option>
           <option value="electricidad del automóvil">Electricidad del Automóvil</option>
           <option value="chapa y pintura">Chapa y Pintura</option>
+          <div class="valid-feedback"> Correcto</div>
+          <div class="invalid-feedback"> Debe seleccionar una opcion</div>
         </select>
       </div>
       <br>
       <div class="form-group">
         <label for="password">Contraseña:</label>
         <input type="password" class="form-control" id="password" name="password" required>
+        <div class="valid-feedback"> Correcto</div>
+        <div class="invalid-feedback"> Debe ingresar una contraseña</div>
       </div>
       <br>
       <center><a href=""><button type="submit" class="btn btn-primary">Registrar</button></a></center>
       <br>
       <br>
-      <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás" value="volver atrás"></center>
+      <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás"
+          value="volver atrás"></center>
       <br>
       <br>
     </form>
@@ -117,3 +133,88 @@
 </body>
 
 </html>
+<script>
+
+  $(document).ready(function () {
+
+    //alert("JQUERY OK");
+    $("#formRegistroMecanico").submit(function (event) {
+
+      event.preventDefault();
+      var nombre = $("#nombre").val();
+      var apellido = $("#apellido").val();
+      var rut = $("#rut").val();
+
+      //validar nombre
+      if (!validarLargoNombre(nombre)) {
+        alert("El largo del Nombre debe ser entre 2 y 20 caracteres");
+        $("#nombre").addClass("is-invalid");
+        $("#nombre").removeClass("is-valid");
+      }
+      else {
+        $("#nombre").addClass("is-valid");
+        $("#nombre").removeClass("is-invalid");
+      }
+
+      //validar apellido
+      if (!validarLargoApellido(apellido)) {
+        alert("El largo del apellido debe ser entre 2 y 20 caracteres");
+        $("#apellido").addClass("is-invalid");
+        $("#apellido").removeClass("is-valid");
+      }
+      else {
+        $("#apellido").addClass("is-valid");
+        $("#apellido").removeClass("is-invalid");
+      }
+
+      //Validar correo
+      var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+
+      if (regex.test($("#email").val().trim())) {
+        $("#email").addClass("is-valid");
+        $("#email").removeClass("is-invalid");
+      } else {
+        alert('La direccón de correo no es válida');
+        $("#email").addClass("is-invalid");
+        $("#email").removeClass("is-valid");
+      }
+
+      //validar rut
+      if (!validarLargoRut(rut)) {
+        alert("El largo del Nombre debe ser entre 9 y 10 caracteres");
+        $("#rut").addClass("is-invalid");
+        $("#rut").removeClass("is-valid");
+      }
+      else {
+        $("#rut").addClass("is-valid");
+        $("#rut").removeClass("is-invalid");
+      }
+
+      //validar especialidad
+      if ($("#especialidad").val() == "") {
+        alert("Debe seleccionar una opción");
+        $("#especialidad").addClass("is-invalid");
+        $("#especialidad").removeClass("is-valid");
+      }
+      else {
+        $("#especialidad").addClass("is-valid");
+        $("#especialidad").removeClass("is-invalid");
+      }
+
+      //Validar contraseña vacia
+      if ($("#password").val() == "") {
+        alert("Debe ingresar su contraseña ");
+        $("#password").addClass("is-invalid");
+        $("#password").removeClass("is-valid");
+      }
+    else{
+       
+        $("#password").addClass("is-valid");
+        $("#password").removeClass("is-invalid");
+        
+      }
+     
+    });
+
+  });
+</script>
