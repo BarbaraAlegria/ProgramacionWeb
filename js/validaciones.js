@@ -23,3 +23,19 @@ function validarLargoApellido(apellido){
     }
     return false;
 }
+function validarLargoPatente(patente){
+
+    if(patente.length ===6)
+    {
+        return true;
+    }
+    return false;
+}
+function validarLargoTelefono(telefono){
+
+    if(telefono.length >= 8 && telefono.length <= 9)
+    {
+        return true;
+    }
+    return false;
+}
