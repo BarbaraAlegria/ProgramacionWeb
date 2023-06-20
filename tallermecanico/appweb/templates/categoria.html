@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+
+    <div class="container-fluid">
+      <h2 class="text-center my-5 fw-light">Nuestras Categorías</h2>
+      <div class="row">
+        <div class="col-4">
+          <div class="card" style="width: 18rem;">
+            <img src="{% static './imagen/mantencion.png'%}" class="img-fluid" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Mantención de kilometraje</h5>
+              <p class="card-text">Se realiza la revisión de niveles de líquidos y estado de los neumáticos</p>
+              <a href="{% url 'mantencionkilo'%}" class="btn btn-primary"></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card" style="width: 18rem;">
+            <img src="{% static './imagen/cambioaceite.png'%}" class="img-fluid" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Cambio de aceite</h5>
+              <p class="card-text">Se realiza el cambio de aceite y el filtro de aceite</p>
+              <a href="{% url 'mantencionbateria'%}" class="btn btn-primary"></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card" style="width: 18rem;">
+            <img src="{% static './imagen/serviciofreno.png'%}" class="img-fluid" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Servicio de freno</h5>
+              <p class="card-text">Se chequea el desgaste de los frenos</p>
+              <a href="{% url 'mantencionfreno'%}" class="btn btn-primary"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-4">
+          <div class="card" style="width: 18rem;">
+            <img src="{% static './imagen/baterias.png'%}" class="img-fluid" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Baterías</h5>
+              <p class="card-text">Se realiza el cambio de batería, se recomienda realizar el cambio cada dos años</p>
+              <a href="{% url 'mantencionbateria'%}" class="btn btn-primary"></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card" style="width: 18rem;">
+            <img src="{% static './imagen/scannerydiagnostico.png'%}" class="img-fluid" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Scanner y diagnóstico</h5>
+              <p class="card-text">Se realiza scanner para detectar posibles códigos de fallas "DTC"</p>
+              <a href="{% url 'mantenimientoscanner'%}" class="btn btn-primary"></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card" style="width: 18rem;">
+            <img src="{% static './imagen/otrosservicios.png'%}" class="img-fluid" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Otros servicios</h5>
+              <p class="card-text">Consultar por otros servicios</p>
+              <a href="{% url 'mantencionotros'%}" class="btn btn-primary"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás" value="volver atrás"></center>
+    <br>
+    <br>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"></script>
+</body>
+
+</html>
+{% endblock %}

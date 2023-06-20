@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+    <div class="row " id="menu">
+        <div class="col-md-6 p-3">
+            <h4> ACERCA DE NUESTROS PRFESIONALES </h4>
+            <br>
+            <br>
+            <p>
+                
+                <b>Nombre:</b>  Pamela Carrasco
+                <br>
+                <br>
+                <b>Título profesional :</b> Mecánica de Chapa y Pintura
+
+
+                <br>
+                <br>
+            
+                <b>Resumen profesional:</b>
+                Pamela Carrasco es una mecánica especializada en chapa y pintura de automóviles,
+                 con tres años de experiencia en el campo. Durante su tiempo en nuestro taller, 
+                 ha demostrado habilidades sólidas en la reparación de carrocerías y la aplicación 
+                 de pintura automotriz. Es conocida por su precisión y atención meticulosa al detalle, 
+                 ofreciendo un servicio de alta calidad y satisfacción del cliente.
+
+
+
+
+                <br>
+                <b>Habilidades destacadas:</b>
+                
+                
+                <li>Amplio conocimiento en reparación y restauración de carrocerías de vehículos.</li>
+                <li>Experiencia en la aplicación de pintura automotriz utilizando técnicas profesionales.</li>
+                <li>Uso de herramientas y equipos especializados para llevar a cabo reparaciones y trabajos de pintura de alta calidad.</li>
+                <li>Capacidad para trabajar con precisión y atención meticulosa al detalle.</li>
+                <li>Excelentes habilidades de comunicación para interactuar con clientes y garantizar su satisfacción.
+                </li>
+                  
+            </p>
+            <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás" value="volver atrás"></center>
+            <div>
+                <img src="{% static './imagen/dato.png'%}" style="float: left">
+                <p></p>
+            </div>
+        </div>
+        <!--- Contenido -->
+        <div class="col-md-6 p-3">
+            <form class="row">
+                <div>
+                    <img src="{% static './imagen/cinco.jpeg'%}" style="float: left">
+                    <p></p>
+                </div>
+                
+            </form>
+
+        </div>
+       
+    </div>
+    {% endblock %}

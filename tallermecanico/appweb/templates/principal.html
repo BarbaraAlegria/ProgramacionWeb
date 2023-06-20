@@ -1,0 +1,90 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+
+  <!--- Carrusel de imágenes con el texto del título de cada trabajo-->
+  <div id="carouselExampleCaptions" class="carousel slide">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <a href="{% url 'pagbujias'%}"><img src="{% static './imagen/bujias.jpg' %}"class="d-block w-100" alt="..."></a>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Cambio de Bujías</h5>
+          <p>Cambio de bujías y limpieza de cuerpo de aceleración sin descalibrar Nissan Sentra</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <a href="{% url 'pagfrenos'%}"><img src="{% static './imagen/pastillasfreno.jpeg' %}"class="d-block w-100" alt="..."></a>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Cambio de pastillas de freno</h5>
+          <p>Los frenos son muy importantes para tu seguridad. Por eso siempre debes mantenerlos en perfecto estado.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <a href="{% url 'pagscanner'%}"><img src="{% static './imagen/scanner.jpg'%}"class="d-block w-100" alt="..."></a>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Scanner y Diagnóstico</h5>
+          <p>Analisis y diagnóstico especifico del fabricante e informe detallado del problema que presenta el vehiculo,
+            datos en tiempo real de sensores en gráficos.</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <br>
+  <br>
+  <div class="row " id="menu">
+    <div class="col-md-6 p-3">
+      <center><h4> MISIÓN </h4>
+        
+        <p>
+          Proporcionar servicios de reparación y mantenimiento automotriz de alta calidad,
+           brindando soluciones confiables y eficientes a nuestros clientes. 
+           Nos comprometemos a mantener los más altos estándares de profesionalismo, 
+           honestidad y excelencia técnica para garantizar la satisfacción total de nuestros clientes.
+        </p></center>
+        <div>
+            <img src="{% static './imagen/dato.png'%}" style="float: left">
+            <p></p>
+        </div>
+    </div>
+    <!--- Contenido -->
+    <div class="col-md-6 p-3">
+        <form class="row">
+          <center> <h4> VISIÓN </h4>
+         
+          <p>
+            Ser reconocidos como el taller mecánico líder en nuestra comunidad, destacando por nuestra calidad 
+            de servicio, experiencia técnica y compromiso con la satisfacción del cliente. Buscamos ser 
+            un referente en el sector automotriz, donde los propietarios de vehículos confíen en nosotros 
+            para todas sus necesidades de reparación y mantenimiento, respaldados por un equipo 
+            altamente capacitado y tecnología de vanguardia. Además, aspiramos a establecer relaciones 
+            duraderas con nuestros clientes, basadas en la confianza y la transparencia.
+          </p></center>
+            
+        </form>
+    </div>
+    
+</div>
+
+</body>
+
+</html>
+{% endblock %}

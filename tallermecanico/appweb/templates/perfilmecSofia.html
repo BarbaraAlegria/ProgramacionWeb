@@ -1,0 +1,61 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+    <div class="row " id="menu">
+        <div class="col-md-6 p-3">
+            <h4> ACERCA DE NUESTROS PRFESIONALES </h4>
+            <br>
+            <br>
+            <p>
+                
+                <b>Nombre:</b>  Sofía Martínez
+                <br>
+                <br>
+                <b>Título profesional :</b> Mecánica de Motores
+                <br>
+                <br>
+            
+                <b>Resumen profesional:</b>
+                Sofía Martínez es una mecánica de motores altamente capacitada y con tres años de experiencia en 
+                el campo automotriz. Durante su tiempo en el taller, 
+                ha demostrado habilidades sólidas en el diagnóstico, mantenimiento y reparación 
+                de motores de diferentes tipos y modelos. Es conocida por su capacidad para solucionar
+                 problemas mecánicos en motores de manera eficiente y efectiva, brindando un
+                  excelente servicio al cliente y manteniendo altos estándares de calidad en su trabajo.
+
+
+                <br>
+                <b>Habilidades destacadas:</b>
+                
+                
+                <li>Amplio conocimiento en diagnóstico y reparación de motores de gasolina y diésel.</li>
+                <li>Experiencia en el uso de herramientas y equipos especializados para motores.</li>
+                <li>Capacidad para trabajar de manera eficiente y efectiva en un entorno de ritmo rápido..</li>
+                <li>Excelentes habilidades de comunicación para interactuar con clientes y explicar problemas y soluciones de manera clara.</li>
+                <li>Atención meticulosa al detalle para realizar reparaciones precisas y de alta calidad en los motores.
+                </li>
+                  
+            </p>
+            <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás" value="volver atrás"></center>
+            <div>
+                <img src="{% static './imagen/dato.png'%}" style="float: left">
+                <p></p>
+            </div>
+        </div>
+        <!--- Contenido -->
+        <div class="col-md-6 p-3">
+            <form class="row">
+                <div>
+                    <img src="{% static './imagen/seis 2.jpeg'%}" style="float: left">
+                    <p></p>
+                </div>
+                
+            </form>
+
+        </div>
+       
+    </div>
+    {% endblock %}

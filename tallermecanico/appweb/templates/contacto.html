@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+
+    <!--- Franja -->
+    <figure class="figure">
+        <img src="{% static './imagen/contacto.png'%}" class="figure-img img-fluid rounded" alt="...">
+        <figcaption class="figure-caption"></figcaption>
+    </figure>
+    </div>
+
+
+    <div class="row " id="menu">
+        <div class="col-md-6 p-3">
+            <h4> ACERCA DE NUESTRO SERVICIO </h4>
+            <p>
+                Si necesitas ayuda con nuestro proceso de reserva o simplemente quieres
+                decirnos lo bueno que era tu mecánico, estaremos siempre encantados de
+                ayudarte.
+            </p>
+            <div>
+                <img src="{% static './imagen/dato.png'%}" style="float: left">
+                <p></p>
+            </div>
+        </div>
+        <!--- Contenido -->
+        <div class="col-md-6 p-3">
+            <form class="row" action="#" enctype="application/x-www-form-urlencoded" method="POST" id="contacto"
+                novalidate>
+                <h4>ENVIANOS <b>TU MENSAJE</b></h4>
+                <div class="col-md-4">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre">
+                </div>
+                <div class="col-md-4">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="apellido">
+                </div>
+                <div class="col-4">
+                    <label for="correo" class="form-label">Correo</label>
+                    <input type="email" class="form-control" id="correo" placeholder="">
+                </div>
+                <div class="col-4">
+                    <label for="numero" class="form-label">Número de teléfono</label>
+                    <input type="text" class="form-control" id="telefono" placeholder="">
+                </div>
+                <div class="col-md-4">
+                    <label for="marca" class="form-label">Marca y Modelo Vehículo</label>
+                    <input type="text" class="form-control" id="marca">
+                </div>
+                <div class="col-md-4">
+                    <label for="patente" class="form-label">Patente vehículo </label>
+                    <input type="text" class="form-control" id="patente">
+                </div>
+                <div class="col-md-4">
+                    <label for="asunto" class="form-label">Asunto </label>
+                    <input type="text" class="form-control" id="asunto">
+                </div>
+                <div class="col-md-4">
+                    <label for="mensaje" class="form-label">Mensaje </label>
+                    <input type="text" class="form-control" id="mensaje">
+                </div>
+                <div class="col-8 mt-2">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </div>
+                <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás"
+                        value="volver atrás"></center>
+            </form>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
+{% endblock %}
+<script>
+    $(document).ready(function () {
+
+        //alert("JQUERY OK");
+        $("#contacto").submit(function (event) {
+
+            event.preventDefault();
+            var nombre = $("#nombre").val();
+            var apellido = $("#apellido").val();
+            var telefono = $("#telefono").val();
+            var patente = $("#patente").val();
+
+
+
+            //validar nombre
+            if (!validarLargoNombre(nombre)) {
+                alert("El largo del Nombre debe ser entre 2 y 30 caracteres");
+                $("#nombre").addClass("is-invalid");
+                $("#nombre").removeClass("is-valid");
+
+            }
+            else {
+                $("#nombre").addClass("is-valid");
+                $("#nombre").removeClass("is-invalid");
+                valnombre = true;
+            }
+            //validar apellido
+            if (!validarLargoApellido(apellido)) {
+                alert("El largo del apellido debe ser entre 2 y 20 caracteres");
+                $("#apellido").addClass("is-invalid");
+                $("#apellido").removeClass("is-valid");
+            }
+            else {
+                $("#apellido").addClass("is-valid");
+                $("#apellido").removeClass("is-invalid");
+                valapellido = true;
+
+            }
+            //Validar correo
+            var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+
+            if (regex.test($("#correo").val().trim())) {
+                $("#correo").addClass("is-valid");
+                $("#correo").removeClass("is-invalid");
+                valcorreo = true;
+
+            } else {
+                alert('La direccón de correo no es válida');
+                $("#correo").addClass("is-invalid");
+                $("#correo").removeClass("is-valid");
+            }
+            //validar telefono
+            if (!validarLargoTelefono(telefono)) {
+                alert("El largo del telefono debe ser entre 8 y 9 caracteres");
+                $("#telefono").addClass("is-invalid");
+                $("#telefono").removeClass("is-valid");
+            }
+            else {
+                $("#telefono").addClass("is-valid");
+                $("#telefono").removeClass("is-invalid");
+                valtel = true;
+            }
+            //Validar marca vacia
+            if ($("#marca").val() == "") {
+                alert("Debe ingresar una marca y modelo ");
+                $("#marca").addClass("is-invalid");
+                $("#marca").removeClass("is-valid");
+            }
+            else {
+
+                $("#marca").addClass("is-valid");
+                $("#marca").removeClass("is-invalid");
+                valmarca = true;
+
+            }
+            //validar patente
+            if (!validarLargoPatente(patente)) {
+                alert("El largo de la pantete solo 6 caracteres");
+                $("#patente").addClass("is-invalid");
+                $("#patente").removeClass("is-valid");
+            }
+            else {
+                $("#patente").addClass("is-valid");
+                $("#patente").removeClass("is-invalid");
+                valpatente = true;
+            }
+            //Validar asunto vacia
+            if ($("#asunto").val() == "") {
+                alert("Debe ingresar asunto ");
+                $("#asunto").addClass("is-invalid");
+                $("#asunto").removeClass("is-valid");
+            }
+            else {
+
+                $("#asunto").addClass("is-valid");
+                $("#asunto").removeClass("is-invalid");
+                valasunto = true;
+
+            }
+            //Validar mensaje vacia
+            if ($("#mensaje").val() == "") {
+                alert("Debe ingresar un mensaje ");
+                $("#mensaje").addClass("is-invalid");
+                $("#mensaje").removeClass("is-valid");
+            }
+            else {
+
+                $("#mensaje").addClass("is-valid");
+                $("#mensaje").removeClass("is-invalid");
+                valmensaje = true;
+
+            }
+
+            if (valnombre == true && valcorreo == true && valcorreo == true && valtel == true && valmarca == true &&
+                valpatente == true && valasunto == true && valmensaje == true) {
+                alert('Mensaje Enviado Exitosamente');
+                //$(location).prop("href","formulario-registro-atencion.html");
+
+
+            }
+
+
+
+
+
+
+
+        });
+
+
+
+
+
+    });
+</script>
