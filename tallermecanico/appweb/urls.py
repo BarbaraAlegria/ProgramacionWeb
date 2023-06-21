@@ -27,6 +27,11 @@ urlpatterns = [
     path('mantencionbateria/',mantencionbateria,name="mantencionbateria"),
     path('mantenimientoscanner/',mantenimientoscanner,name="mantenimientoscanner"),
     path('mantencionotros/',mantencionotros,name="mantencionotros"),
+    path('loginmecanico/',loginmecanico,name="loginmecanico"),
+    path('loginadministrador/',loginadministrador,name="loginadministrador"),
+    path('loginusuario/',loginusuario,name="loginusuario"),
+    path('formularioRegistroAtencion/',formularioRegistroAtencion,name="formularioRegistroAtencion"),
+    path('tareasadministrador/',tareasadministrador,name="tareasadministrador"),
    
 
     

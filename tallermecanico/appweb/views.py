@@ -34,9 +34,6 @@ def loginmecanico(request):
 def loginprincipal(request):
     return render(request, "loginprincipal.html")
 
-def loginprincipal(request):
-    return render(request, "loginprincipal.html")
-
 def loginusuario(request):
     return render(request, "loginusuario.html")
 
