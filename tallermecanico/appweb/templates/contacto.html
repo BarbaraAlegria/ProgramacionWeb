@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block contenido %}
+{% load crispy_forms_tags %}
 
     <!--- Franja -->
     <figure class="figure">
@@ -29,44 +30,18 @@
             <form class="row" action="#" enctype="application/x-www-form-urlencoded" method="POST" id="contacto"
                 novalidate>
                 <h4>ENVIANOS <b>TU MENSAJE</b></h4>
-                <div class="col-md-4">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="nombre">
-                </div>
-                <div class="col-md-4">
-                    <label for="apellido" class="form-label">Apellido</label>
-                    <input type="text" class="form-control" id="apellido">
-                </div>
-                <div class="col-4">
-                    <label for="correo" class="form-label">Correo</label>
-                    <input type="email" class="form-control" id="correo" placeholder="">
-                </div>
-                <div class="col-4">
-                    <label for="numero" class="form-label">Número de teléfono</label>
-                    <input type="text" class="form-control" id="telefono" placeholder="">
-                </div>
-                <div class="col-md-4">
-                    <label for="marca" class="form-label">Marca y Modelo Vehículo</label>
-                    <input type="text" class="form-control" id="marca">
-                </div>
-                <div class="col-md-4">
-                    <label for="patente" class="form-label">Patente vehículo </label>
-                    <input type="text" class="form-control" id="patente">
-                </div>
-                <div class="col-md-4">
-                    <label for="asunto" class="form-label">Asunto </label>
-                    <input type="text" class="form-control" id="asunto">
-                </div>
-                <div class="col-md-4">
-                    <label for="mensaje" class="form-label">Mensaje </label>
-                    <input type="text" class="form-control" id="mensaje">
-                </div>
+
+                {% csrf_token %}
+
+                {{ form | crispy }}
                 <div class="col-8 mt-2">
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </div>
                 <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás"
                         value="volver atrás"></center>
             </form>
+            
+            
         </div>
     </div>
 

@@ -1,11 +1,18 @@
 from django.shortcuts import render ,redirect,get_object_or_404
+from .models import Mecanico
+from .forms import ContactoForm
+
 
 # Create your views here.
 def principal(request):
     return render(request, "principal.html")
 
 def contacto(request):
-    return render(request, "contacto.html")
+    data ={
+        'form' :  ContactoForm  
+    }
+    
+    return render(request, "contacto.html", data)
 
 def servicio(request):
     return render(request, "servicio.html")
@@ -32,6 +39,7 @@ def loginmecanico(request):
     return render(request, "loginmecanico.html")
 
 def loginprincipal(request):
+
     return render(request, "loginprincipal.html")
 
 def loginusuario(request):
@@ -56,7 +64,14 @@ def mantenimientoscanner(request):
     return render(request, "mantenimientoscanner.html")
 
 def pagmecanicos(request):
-    return render(request, "pagmecanicos.html")
+    #se crea una variable llamada mecanicos
+    mecanicos = Mecanico.objects.all()
+   #creamos un objeto para enviar al template
+    data={
+       'mecanicos':mecanicos 
+   }
+
+    return render(request, "pagmecanicos.html", data)
 
 def perfilMecCamila(request):
     return render(request, "perfilMecCamila.html")
