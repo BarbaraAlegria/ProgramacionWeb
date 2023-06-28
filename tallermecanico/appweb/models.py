@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -38,3 +39,26 @@ class Contacto(models.Model):
 
     def __str__(self):
         return self.nombre   
+    
+list_categoria = [
+    [0, "Mantencíon de kilometraje"],
+    [1, "Cambio de aceite"],
+    [2, "Frenos"],
+    [3, "Baterías"],
+    [4, "Scanner y diagnostico"],
+    [5, "otros"]
+    
+
+    
+]
+class Atencion(models.Model):
+    fecha = models.DateField()
+    monto = models.IntegerField()
+    Modelo = models.CharField(max_length=100)
+    categoria = models.IntegerField(choices=list_categoria)
+    observacion = models.TextField()
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    fotografia = models.ImageField(null=True, upload_to='categoria')
+
+    def __str__(self):
+        return self.observacion

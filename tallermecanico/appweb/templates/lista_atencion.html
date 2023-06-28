@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+
+<script>
+  function eliminarAtencion(observacion)
+  {
+    Swal.fire({
+      "title": "Advertencia",
+      "text": "¿Esta seguro que desea eliminar la atencion?",
+      "icon": "question",
+      "showCancelButton": true,
+      "cancelButtonText": "No, cancelar",
+      "confirmButtonText":"Si, eliminar"
+    }).then(function(result){
+
+      if(result.isConfirmed)
+      {
+        window.location.href="/eliminar_atencion/"+observacion+"/";
+      }
+
+    })
+  }
+</script>
+
+<div class="container mt-5">
+    <div class="text-center">
+      <h2 class="mt-4">Listar Atenciones</h2>  
+    </div>
+    <a href="{% url 'vistaPrevia' %}" class="btn btn-primary btn-sm" >Ver Vista Previa </a>
+
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col"> usuario </th>
+        <th scope="col">fecha</th>
+        <th scope="col">monto</th>
+        <th scope="col">Modelo</th>
+        <th scope="col">categoria</th>
+        <th scope="col"> observacion </th>
+        <th scope="col"> fotografia </th>
+        <th scope="col"> Opciones </th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for p in aten %}
+      <tr>
+        <th scope="row">{{p.observacion}}</th>
+        <td>{{p.fecha}}</td>
+        <td>{{p.monto}}</td>
+        <td>{{p.Modelo}}</td>
+        <td>{{p.categoria}}</td>
+        <td>{{p.usuario}}</td>
+        <td>{{p.fotografia}}</td>
+        
+        <td>
+          <a href="#" class="btn btn-success btn-sm" >Aprobar </a>
+          <a href="#" onclick="eliminarAtencion('{{p.observacion}}')" class="btn btn-danger btn-sm" >Eliminar </a>
+
+        </td>
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+</div>
+  {% endblock %}

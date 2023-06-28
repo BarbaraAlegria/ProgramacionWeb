@@ -48,6 +48,20 @@
         </form>
 
         <div class="text-end">
+          {% if user.is_authenticated %}
+
+            <a href="{% url 'logout' %}" class="btn btn-outline-light me-2">Cerrar Sesion</a>
+            <button type="button" class="btn btn-warning">Bienvenido {{user.username}}</button>
+
+          {% else %}
+           
+
+            <a href="{% url 'login' %}" class="btn btn-outline-light me-2">Login</a>
+            <a href="{% url 'registro_mecanico' %}" class="btn btn-warning">Registrarse</a>
+
+
+          {% endif %}
+
             
           </a>
         </div>

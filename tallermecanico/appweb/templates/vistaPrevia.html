@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+
+<div class="container" style="margin-top: 50px">
+  <center><h2>Filtro de Publicaciones</h2></center>
+  <p>Nuestro equipo altamente capacitado de mecánicos expertos está comprometido con la excelencia en el mantenimiento y 
+    reparación de vehículos. Utilizamos las últimas herramientas y tecnologías para asegurarnos de que tu automóvil reciba 
+    el mejor cuidado posible.</p>
+  <div id="profesionales_excelencia" class="row">
+    <div class="cont-profesionales col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <h3>Publicaciones
+      </h3>
+      <div class="cont-listado row">
+        {% for p in atenciones %}
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div class="prof int">
+            <figure>
+              <a href="#">               
+                {% if p.fotografia %}
+                <img width="270" height="350"
+                  src="{{p.fotografia.url}}"
+                  class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
+                {% else %}
+                  <img width="270" height="350"
+                  src=""
+                  class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
+                {% endif%}      
+                </a>
+            
+              <h4 class="nombre white">{{p.observacion}} {{p.modelo}}</h4>
+              <span class="cargo" style="display: none;">Director Odontológico</span>
+            </figure>
+            <div class="details">
+              <p class="extracto">{{p.categoria}}</p>
+              <p class="rrss"></p>
+            </div>
+          </div>
+        </div>
+        
+        {% endfor %}
+
+        <section>
+          <br>
+          <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás" value="volver atrás"></center>
+          <div class="contacto my-5">
+            <img src="{% static './imagen/dato.png'%}" alt="">
+          </div>
+        </section>
+    
+
+
+
+
+    </div>
+  </div>
+</div>
+{% endblock %}

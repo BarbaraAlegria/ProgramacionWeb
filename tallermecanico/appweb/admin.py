@@ -12,4 +12,6 @@ class MecanicoAdmin(admin.ModelAdmin):
 admin.site.register(Cargo)
 admin.site.register(Mecanico, MecanicoAdmin)
 admin.site.register(Contacto)
+admin.site.register(Atencion)
+
 

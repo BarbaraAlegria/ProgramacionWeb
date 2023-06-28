@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block contenido %}
+<div class="container mt-5">
+  <div class="text-center">
+    <h2 class="mt-4">Modificar Mecánico</h2>  
+  </div>
+  <h3>{{mensaje}}</h3>
+  <form id="formAgregar" method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form | crispy }}
+    <button type="submit" class="btn btn-primary">Modificar</button>
+    <button type="reset" class="btn btn-danger">Limpiar</button>
+    <center><input type="button" class="btn btn-secondary btn" onclick="history.back()"
+      name="volver atrás" value="volver atrás"></center>
+
+</form>
+</div>
+
+{% endblock %}

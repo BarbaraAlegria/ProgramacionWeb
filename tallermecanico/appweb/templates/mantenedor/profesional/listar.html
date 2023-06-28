@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+
+<script>
+  function eliminarMecanico(rut)
+  {
+    Swal.fire({
+      "title": "Advertencia",
+      "text": "¿Esta seguro que desea eliminar a un profesional?",
+      "icon": "question",
+      "showCancelButton": true,
+      "cancelButtonText": "No, cancelar",
+      "confirmButtonText":"Si, eliminar"
+    }).then(function(result){
+
+      if(result.isConfirmed)
+      {
+        window.location.href="/eliminar_profesional/"+rut+"/";
+      }
+
+    })
+  }
+</script>
+
+<div class="container mt-5">
+    <div class="text-center">
+      <h2 class="mt-4">Listar profesionales</h2>  
+    </div>
+    <a href="{% url 'agregar_mecanico' %}" class="btn btn-primary btn-sm" >Agregar nuevo Mecánico </a>
+
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Rut</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Cargo</th>
+        <th scope="col"> Opciones </th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for p in pagmecanicos %}
+      <tr>
+        <th scope="row">{{p.rut}}</th>
+        <td>{{p.nombre}}</td>
+        <td>{{p.apellido}}</td>
+        <td>{{p.cargo}}</td>
+        <td>
+          <a href="{% url 'modificar_mecanico' p.rut %}" class="btn btn-success btn-sm" >Modificar </a>
+          <a href="#" onclick="eliminarMecanico('{{p.rut}}')" class="btn btn-danger btn-sm" >Eliminar </a>
+
+        </td>
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+  <br>
+  <br>
+  <center><input type="button" class="btn btn-secondary btn" onclick="history.back()"
+    name="volver atrás" value="volver atrás"></center>
+</div>
+  {% endblock %}
