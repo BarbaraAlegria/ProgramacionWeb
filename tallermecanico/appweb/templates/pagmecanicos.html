@@ -2,20 +2,43 @@
 {% load static %}
 
 {% block contenido %}
+<script>
+  function filtrar(observacion)
+  {
+      window.location.href="/pagmecanicos?nom_cargo="+$('#filter_cargo').val();
+  }
+</script>
 
 <div class="container" style="margin-top: 50px">
   <center><h2>Nuestros Profesionales</h2></center>
   <p>Nuestro equipo altamente capacitado de mecánicos expertos está comprometido con la excelencia en el mantenimiento y 
     reparación de vehículos. Utilizamos las últimas herramientas y tecnologías para asegurarnos de que tu automóvil reciba 
     el mejor cuidado posible.</p>
+    
+    <label for="filter_cargo">Buscar por cargo:</label>
+<select name="filter_cargo" id="filter_cargo" onchange="filtrar()">
+  <option value="">Todas</option>
+  {% for cargo in cargos %}
+    <option value="{{ cargo.nombre }}">{{ cargo.nombre }}</option>
+  {% endfor %}
+</select>
+
+    
+    
+    
+    {% for mecanico in mecanicos %}
+      <!-- Mostrar información del mecánico -->
+    {% endfor %}
+    
   <div id="profesionales_excelencia" class="row">
     <div class="cont-profesionales col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <h3>Equipo Directivo</h3>
-      <div class="cont-listado row">
       
-
+      <div class="cont-listado row">
+        
         {% for p in mecanicos %}
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          
           <div class="prof int">
             <figure>
               <a href="#">               

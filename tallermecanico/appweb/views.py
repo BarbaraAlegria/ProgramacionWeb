@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Mecanico,Atencion,list_categoria
+from .models import Mecanico,Atencion,list_categoria,Cargo
 from .forms import ContactoForm, MecanicoForm, AtencionForm
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login
@@ -234,18 +234,40 @@ def pagscanner(request):
 
 
 
+
+
+def lista_atenciones_aprobadas(request):
+    aten=None
+    id_cat=request.GET.get('id_cat', '')
+    if id_cat != '':
+        aten = Atencion.objects.filter(Estado=1,categoria=id_cat)
+    else:
+        aten = Atencion.objects.filter(Estado=1)
+    data = {
+        "aten" : aten,
+        "list_categoria":list_categoria
+    }
+    return render(request, "atencionesAprobadas.html",data)
+
+
+
 def pagmecanicos(request):
-    #se crea una variable llamada mecanicos
-    mecanicos = Mecanico.objects.all()
-   #creamos un objeto para enviar al template
-    data={
-       'mecanicos':mecanicos 
-   }
+    mecanicos = None
+    nombreCargo = request.GET.get('nom_cargo', '')
+    cargos = Cargo.objects.all()
+
+    if nombreCargo != '':
+        mecanicos = Mecanico.objects.filter(cargo__nombre=nombreCargo)
+    else:
+        mecanicos = Mecanico.objects.all()
+
+    data = {
+        'mecanicos': mecanicos,
+        'cargos': cargos,
+        'nombreCargo': nombreCargo
+    }
 
     return render(request, "pagmecanicos.html", data)
-
-
-
 
 
 
