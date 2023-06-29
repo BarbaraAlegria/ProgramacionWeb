@@ -220,19 +220,6 @@ def pagbujias(request):
 def pagscanner(request):
     return render(request, "pagscanner.html")
 
-def categoria(request):
-    return render(request, "categoria.html")
-
-def loginadministrador(request):
-    return render(request, "loginadministrador.html")
-
-def loginmecanico(request):
-    return render(request, "loginmecanico.html")
-
-def loginprincipal(request):
-
-    return render(request, "loginprincipal.html")
-
 def vistaPrevia(request):
     atenciones = Atencion.objects.all()
    #creamos un objeto para enviar al template
@@ -245,20 +232,7 @@ def vistaPrevia(request):
 def pagscanner(request):
     return render(request, "pagscanner.html")
 
-def mantencionbateria(request):
-    return render(request, "mantencionbateria.html")
 
-def mantencionfreno(request):
-    return render(request, "mantencionfreno.html")
-
-def mantencionkilo(request):
-    return render(request, "mantencionkilo.html")
-
-def mantencionotros(request):
-    return render(request, "mantencionotros.html")
-
-def mantenimientoscanner(request):
-    return render(request, "mantenimientoscanner.html")
 
 def pagmecanicos(request):
     #se crea una variable llamada mecanicos
@@ -273,11 +247,8 @@ def pagmecanicos(request):
 
 
 
-def adminAtencion(request):
-    return render(request, "adminAtencion.html")
 
-def adminMecanico(request):
-    return render(request, "adminMecanico.html")
 
-def formularioRegistroAtencion(request):
-    return render(request, "formularioRegistroAtencion.html")
+
+
+
