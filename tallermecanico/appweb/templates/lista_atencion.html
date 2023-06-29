@@ -22,13 +22,31 @@
 
     })
   }
+  function aprobarAtencion(observacion)
+  {
+    Swal.fire({
+      "title": "Advertencia",
+      "text": "¿Esta seguro que deseas publicar esta atención?",
+      "icon": "question",
+      "showCancelButton": true,
+      "cancelButtonText": "No, cancelar",
+      "confirmButtonText":"Si, publicar"
+    }).then(function(result){
+
+      if(result.isConfirmed)
+      {
+        window.location.href="/aprobar_atencion/"+observacion+"/";
+      }
+
+    })
+  }
 </script>
 
 <div class="container mt-5">
     <div class="text-center">
       <h2 class="mt-4">Listar Atenciones</h2>  
     </div>
-    <a href="{% url 'vistaPrevia' %}" class="btn btn-primary btn-sm" >Ver Vista Previa </a>
+   
 
 
 
@@ -54,10 +72,22 @@
         <td>{{p.Modelo}}</td>
         <td>{{p.categoria}}</td>
         <td>{{p.usuario}}</td>
-        <td>{{p.fotografia}}</td>
+        <td>
+          {% if p.fotografia %}
+                <img width="50" height="50"
+                  src="{{p.fotografia.url}}"
+                  class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
+                {% else %}
+                  <img width="270" height="350"
+                  src=""
+                  class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
+                {% endif%}      
+        </td>
+        
+                </a>
         
         <td>
-          <a href="#" class="btn btn-success btn-sm" >Aprobar </a>
+          <a href="#" onclick="aprobarAtencion('{{p.observacion}}')"  class="btn btn-success btn-sm" >Aprobar </a>
           <a href="#" onclick="eliminarAtencion('{{p.observacion}}')" class="btn btn-danger btn-sm" >Eliminar </a>
 
         </td>
@@ -66,5 +96,7 @@
       
     </tbody>
   </table>
+  <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás"
+    value="volver atrás"></center>
 </div>
   {% endblock %}

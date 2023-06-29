@@ -10,7 +10,14 @@ class ProfesionalAdmin(admin.ModelAdmin):
     
     search_fields = ['rut']
 
+class AtencionAdmin(admin.ModelAdmin):
+    list_display = ['fecha', 'monto', 'Modelo', 'categoria','observacion']
+    
+    
+    
+    search_fields = ['observacion']
+
 admin.site.register(Cargo)
 admin.site.register(Profesional, ProfesionalAdmin)
 admin.site.register(Contacto)
-admin.site.register(Atencion)
+admin.site.register(Atencion,AtencionAdmin)

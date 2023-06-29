@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+<script>
+  function filtrar(observacion)
+  {
+      window.location.href="/atencionesAprobadas?id_cat="+$('#filter_cat').val();
+  }
+</script>
+<div class="container" style="margin-top: 50px">
+  <center><h2>Publicaciones</h2></center>
+  <p>Nuestro equipo altamente capacitado de mecánicos expertos está comprometido con la excelencia en el mantenimiento y 
+    reparación de vehículos. Utilizamos las últimas herramientas y tecnologías para asegurarnos de que tu automóvil reciba 
+    el mejor cuidado posible.</p>
+    <br>
+    <br>
+    Filtro: <select name="filert_cat" id="filter_cat" onchange="filtrar()">
+        <option>Todas</option>
+        {% for cat in list_categoria %}
+          <option value="{{cat.0}}">{{cat.1}}</option>
+        {% endfor %}
+    </select>
+  <div id="profesionales_excelencia" class="row">
+    <div class="cont-profesionales col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <br>
+      <br>
+      <br>
+      <div class="cont-listado row">
+        {% for p in aten %}
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div class="prof int">
+            <figure>
+              <a href="#">               
+                {% if p.fotografia %}
+                <img width="270" height="350"
+                  src="{{p.fotografia.url}}"
+                  class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
+                {% else %}
+                  <img width="270" height="350"
+                  src=""
+                  class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
+                {% endif%}      
+                </a>
+            
+              <p class="nombre white"> Observacion: {{p.observacion}} </p>
+              <p class="nombre white"> Modelo: {{p.Modelo}}</p>
+              <p class="nombre white"> Fecha: {{p.fecha}}</p>
+              <p class="nombre white">Categoria: {{p.get_categoria_display}}</p>
+            </figure>
+            
+          </div>
+        </div>
+        
+        {% endfor %}
+
+        <section>
+          <br>
+          <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás" value="volver atrás"></center>
+          <div class="contacto my-5">
+            <img src="{% static './imagen/dato.png'%}" alt="">
+          </div>
+        </section>
+    
+
+
+
+
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -17,14 +17,16 @@ urlpatterns = [
     path('vistaPrevia/',vistaPrevia,name="vistaPrevia"),
     path('lista_atencion/',lista_atencion,name="lista_atencion"),
     path('eliminar_atencion/<observacion>/', eliminar_atencion, name="eliminar_atencion"),
-
-
-
+    path('aprobar_atencion/<observacion>/', aprobar_atencion, name="aprobar_atencion"),
+    path('atencionesAprobadas/', lista_atenciones_aprobadas, name="lista_atenciones_aprobadas"),
     path('servicio/',servicio,name="servicio"),
-    
     path('pagfrenos/',pagfrenos,name="pagfrenos"),
     path('pagbujias/',pagbujias,name="pagbujias"),
     path('pagscanner/',pagscanner,name="pagscanner"),
+
+
+
+    
     path('categoria/',categoria,name="categoria"),
     path('loginadministrador/',loginadministrador,name="loginadministrador"),
     path('loginmecanico/',loginmecanico,name="loginmecanico"),

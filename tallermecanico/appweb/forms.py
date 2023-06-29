@@ -27,6 +27,10 @@ class AtencionForm(forms.ModelForm):
         model = Atencion
         fields = "__all__"
 
+        
+
         widgets = {
+            'Estado': forms.HiddenInput(),
             "fecha": forms.DateTimeInput(attrs={'type':'date'}, format=('%Y-%m-%d'))
+            
         }

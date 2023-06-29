@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Mecanico,Atencion
+from .models import Mecanico,Atencion,list_categoria
 from .forms import ContactoForm, MecanicoForm, AtencionForm
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, permission_required
 from datetime import datetime
+import logging
 
+logger = logging.getLogger(__name__)
 # Create your views here.
 def principal(request):
     return render(request, "principal.html")
@@ -29,10 +31,15 @@ def contacto(request):
 
     return render(request, "contacto.html", data)
 
+
+
 @login_required(login_url='/accounts/login')
 @permission_required(['appweb.view_profesional'], login_url='/accounts/login')
 def tareasadministrador(request):
     return render(request, "tareasadministrador.html")
+
+
+
 
 def agregar_mecanico(request):
     data= {
@@ -58,6 +65,9 @@ def listar_mecanicos(request):
         "pagmecanicos" : mecanico
     }
     return render(request, "mantenedor/profesional/listar.html", data)
+
+
+
     
 def modificar_mecanico(request,rut):
 
@@ -78,6 +88,8 @@ def modificar_mecanico(request,rut):
 
     return render(request, "mantenedor/profesional/modificar.html",data)
 
+
+
 def eliminar_mecanico(request, rut):
     mecanico = get_object_or_404(Mecanico, rut=rut)
 
@@ -96,6 +108,8 @@ def login_usuario(request):
         print("Es un mecanico")
 
     return redirect(to='principal')
+
+
 
 def registro_mecanico(request):
     data = {
@@ -128,8 +142,11 @@ def registro_mecanico(request):
                 data["mensaje"] = "Error"
     return render(request, "registration/registro.html", data)
 
+
+
+
 @login_required(login_url='/accounts/login')
-@permission_required(['appweb.view_mecanico'], login_url='/accounts/login')
+@permission_required(['appweb.view_atencion'], login_url='/accounts/login')
 def registrar_atencion(request):
     data= {
         'form': AtencionForm,
@@ -147,20 +164,45 @@ def registrar_atencion(request):
     return render(request, "atencion.html",data)
 
 
+
+
+def lista_atenciones_aprobadas(request):
+    aten=None
+    id_cat=request.GET.get('id_cat', '')
+    if id_cat != '':
+        aten = Atencion.objects.filter(Estado=1,categoria=id_cat)
+    else:
+        aten = Atencion.objects.filter(Estado=1)
+    data = {
+        "aten" : aten,
+        "list_categoria":list_categoria
+    }
+    return render(request, "atencionesAprobadas.html",data)
+
+
+
 def lista_atencion(request):
-    aten = Atencion.objects.all()
+    aten = Atencion.objects.filter(Estado=0)
     data = {
         "aten" : aten
     }
-    
+    print(data)
     return render(request, "lista_atencion.html",data)
 
+
+
+def aprobar_atencion(request, observacion):
+    atencion = get_object_or_404(Atencion, observacion=observacion)
+    atencion.Estado=1
+    atencion.save()
+    messages.success(request, "La publicacion del usuario fue aprobada correctamente")
+    return redirect(to="lista_atencion")
 
 def eliminar_atencion(request, observacion):
     atencion = get_object_or_404(Atencion, observacion=observacion)
 
     atencion.delete()
-    messages.success(request, "La publicacion del usuario: "+ observacion + " fue eliminada correctamente")
+    messages.success(request, "La publicacion del usuario fue eliminada correctamente")
     return redirect(to="lista_atencion")
 
 def servicio(request):

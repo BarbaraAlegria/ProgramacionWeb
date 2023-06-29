@@ -47,9 +47,6 @@ list_categoria = [
     [3, "Baterías"],
     [4, "Scanner y diagnostico"],
     [5, "otros"]
-    
-
-    
 ]
 class Atencion(models.Model):
     fecha = models.DateField()
@@ -57,6 +54,7 @@ class Atencion(models.Model):
     Modelo = models.CharField(max_length=100)
     categoria = models.IntegerField(choices=list_categoria)
     observacion = models.TextField()
+    Estado = models.IntegerField(default=0)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     fotografia = models.ImageField(null=True, upload_to='categoria')
 
