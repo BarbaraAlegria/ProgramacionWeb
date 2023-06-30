@@ -215,8 +215,10 @@ def lista_atenciones_aprobadas(request):
     return render(request, "atencionesAprobadas.html",data)
 
 def eliminar_atencion(request, observacion):
+    motivo_rechazo=request.GET.get('motivo_rechazo', '')
     atencion = get_object_or_404(Atencion, observacion=observacion)
     atencion.Estado=2
+    atencion.motivoRechazo=motivo_rechazo
 
     atencion.save()
     messages.success(request, "Rechazada")

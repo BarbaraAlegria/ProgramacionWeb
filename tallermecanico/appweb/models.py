@@ -54,6 +54,7 @@ class Atencion(models.Model):
     Modelo = models.CharField(max_length=100)
     categoria = models.IntegerField(choices=list_categoria)
     observacion = models.TextField()
+    motivoRechazo = models.TextField(null=True,blank=True)
     Estado = models.IntegerField(default=0)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     fotografia = models.ImageField(null=True, upload_to='categoria')

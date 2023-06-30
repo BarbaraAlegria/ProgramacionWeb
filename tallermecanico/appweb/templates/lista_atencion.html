@@ -16,13 +16,10 @@
     confirmButtonText: "Si, rechazar"
   }).then(function(result) {
     if (result.isConfirmed) {
-      var motivoRechazo = Swal.getInput().value;
-      localStorage.setItem('motivoRechazo', motivoRechazo);
-      window.location.href = "/eliminar_atencion/" + observacion + "/";
+      window.location.href = "/eliminar_atencion/" + observacion + "?motivo_rechazo="+result.value;
     }
   });
 }
-var motivoRechazo = localStorage.getItem('motivoRechazo');
 // Utiliza el valor de motivoRechazo en la vista según sea necesario
 
 
