@@ -17,13 +17,17 @@
     
     <label for="filter_cargo">Buscar por cargo:</label>
 <select name="filter_cargo" id="filter_cargo" onchange="filtrar()">
-  <option value="">Todas</option>
+  <option value="">Todos</option>
   {% for cargo in cargos %}
     <option value="{{ cargo.nombre }}">{{ cargo.nombre }}</option>
   {% endfor %}
 </select>
+   
 
-    
+    <br>
+    <br>
+    <br>
+
     
     
     {% for mecanico in mecanicos %}
@@ -32,7 +36,7 @@
     
   <div id="profesionales_excelencia" class="row">
     <div class="cont-profesionales col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <h3>Equipo Directivo</h3>
+     
       
       <div class="cont-listado row">
         

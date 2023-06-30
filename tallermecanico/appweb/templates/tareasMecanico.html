@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+
+  <figure class="text-center">
+    <blockquote class="blockquote">
+      <p>
+      <h1>Administrador</h1>
+      </p>
+    </blockquote>
+    <figcaption class="blockquote-footer">
+      <cite title="Source Title">Interfaz de gestion para administradores</cite>
+    </figcaption>
+  </figure>
+  <div class="container text-center">
+    <div class="row align-items-start">
+      
+     
+      <div class="col">
+        <a href="{% url 'atencion'%}" class="btn btn-primary btn-lg" >Publicar Atención </a>
+      </div>
+      <div class="col">
+        <a href="{% url 'lista_atencion_rechazada'%}" class="btn btn-primary btn-lg" >Atenciones Rechazadas </a>
+      </div>
+      
+      
+      <br>
+      <br>
+      <br><br><br> <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás"
+        value="volver atrás"></center>
+     
+  </div>
+
+</body>
+
+</html>
+{% endblock %}

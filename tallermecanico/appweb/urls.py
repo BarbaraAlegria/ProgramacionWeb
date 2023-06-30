@@ -25,6 +25,9 @@ urlpatterns = [
     path('pagscanner/',pagscanner,name="pagscanner"),
     path('pagmecanicos/',pagmecanicos,name="pagmecanicos"),
     path('tareasadministrador/',tareasadministrador,name="tareasadministrador"),
+    path('tareasMecanico/',tareasMecanico,name="tareasMecanico"),
+    path('atencionesRechazadas/',lista_atencion_rechazada,name="lista_atencion_rechazada"),
+    path('modificarAtencion/<observacion>/',modificar_atencion,name="modificar_atencion"),
 
 
 ]

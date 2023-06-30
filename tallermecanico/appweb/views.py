@@ -147,6 +147,9 @@ def registro_mecanico(request):
 
 @login_required(login_url='/accounts/login')
 @permission_required(['appweb.view_atencion'], login_url='/accounts/login')
+def tareasMecanico(request):
+    return render(request, "tareasMecanico.html")
+
 def registrar_atencion(request):
     data= {
         'form': AtencionForm,
@@ -198,12 +201,57 @@ def aprobar_atencion(request, observacion):
     messages.success(request, "La publicacion del usuario fue aprobada correctamente")
     return redirect(to="lista_atencion")
 
+def lista_atenciones_aprobadas(request):
+    aten=None
+    id_cat=request.GET.get('id_cat', '')
+    if id_cat != '':
+        aten = Atencion.objects.filter(Estado=1,categoria=id_cat)
+    else:
+        aten = Atencion.objects.filter(Estado=1)
+    data = {
+        "aten" : aten,
+        "list_categoria":list_categoria
+    }
+    return render(request, "atencionesAprobadas.html",data)
+
 def eliminar_atencion(request, observacion):
     atencion = get_object_or_404(Atencion, observacion=observacion)
+    atencion.Estado=2
 
-    atencion.delete()
-    messages.success(request, "La publicacion del usuario fue eliminada correctamente")
+    atencion.save()
+    messages.success(request, "Rechazada")
     return redirect(to="lista_atencion")
+
+def lista_atencion_rechazada(request):
+    rechazado = Atencion.objects.filter(Estado=2)
+    data = {
+        "rechazado" : rechazado
+    }
+    print(data)
+    return render(request, "atencionesRechazadas.html",data)
+
+def modificar_atencion(request,observacion):
+
+    atencion = get_object_or_404(Atencion, observacion=observacion)
+    atencion.Estado=2
+
+    data = {
+        "form": AtencionForm(instance=atencion)
+    }
+    if request.method == 'POST':
+        formulario = AtencionForm(data=request.POST, files=request.FILES, instance=atencion)
+        if formulario.is_valid():
+            atencion.Estado=0
+            formulario.save()
+            return redirect(to="lista_atencion_rechazada")
+        else:
+            data["mensaje"] = "Hubo un error"
+            data["form"] =  formulario
+
+
+    return render(request, "modificarAtencion.html",data)
+
+
 
 def servicio(request):
     return render(request, "servicio.html")
@@ -236,18 +284,7 @@ def pagscanner(request):
 
 
 
-def lista_atenciones_aprobadas(request):
-    aten=None
-    id_cat=request.GET.get('id_cat', '')
-    if id_cat != '':
-        aten = Atencion.objects.filter(Estado=1,categoria=id_cat)
-    else:
-        aten = Atencion.objects.filter(Estado=1)
-    data = {
-        "aten" : aten,
-        "list_categoria":list_categoria
-    }
-    return render(request, "atencionesAprobadas.html",data)
+
 
 
 

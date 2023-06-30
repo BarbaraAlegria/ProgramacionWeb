@@ -8,11 +8,11 @@
   {
     Swal.fire({
       "title": "Advertencia",
-      "text": "¿Esta seguro que desea rechazar la atencion?",
+      "text": "¿Esta seguro que desea eliminar la atencion?",
       "icon": "question",
       "showCancelButton": true,
       "cancelButtonText": "No, cancelar",
-      "confirmButtonText":"Si, rechazar"
+      "confirmButtonText":"Si, eliminar"
     }).then(function(result){
 
       if(result.isConfirmed)
@@ -44,7 +44,7 @@
 
 <div class="container mt-5">
     <div class="text-center">
-      <h2 class="mt-4">Listar Atenciones</h2>  
+      <h2 class="mt-4">Atenciones Rechazadas</h2>  
     </div>
    
 
@@ -64,7 +64,7 @@
       </tr>
     </thead>
     <tbody>
-        {% for p in aten %}
+        {% for p in rechazado %}
       <tr>
         <td>{{p.usuario}}</td>
         <td>{{p.fecha}}</td>
@@ -72,7 +72,6 @@
         <td>{{p.Modelo}}</td>
         <td>{{p.categoria}}</td>
         <th scope="row">{{p.observacion}}</th>
-        
         <td>
           {% if p.fotografia %}
                 <img width="50" height="50"
@@ -88,8 +87,7 @@
                 </a>
         
         <td>
-          <a href="#" onclick="aprobarAtencion('{{p.observacion}}')"  class="btn btn-success btn-sm" >Aprobar </a>
-          <a href="#" onclick="eliminarAtencion('{{p.observacion}}')" class="btn btn-danger btn-sm" >Rechazar </a>
+            <a href="{% url 'modificar_atencion' p.observacion %}" class="btn btn-success btn-sm" >Modificar </a>
 
         </td>
       </tr>
