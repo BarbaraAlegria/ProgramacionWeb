@@ -2,45 +2,9 @@
 
 {% block contenido %}
 
+<script>var motivoRechazo = localStorage.getItem('motivoRechazo');</script>
 
-<script>
-  function eliminarAtencion(observacion)
-  {
-    Swal.fire({
-      "title": "Advertencia",
-      "text": "¿Esta seguro que desea eliminar la atencion?",
-      "icon": "question",
-      "showCancelButton": true,
-      "cancelButtonText": "No, cancelar",
-      "confirmButtonText":"Si, eliminar"
-    }).then(function(result){
 
-      if(result.isConfirmed)
-      {
-        window.location.href="/eliminar_atencion/"+observacion+"/";
-      }
-
-    })
-  }
-  function aprobarAtencion(observacion)
-  {
-    Swal.fire({
-      "title": "Advertencia",
-      "text": "¿Esta seguro que deseas publicar esta atención?",
-      "icon": "question",
-      "showCancelButton": true,
-      "cancelButtonText": "No, cancelar",
-      "confirmButtonText":"Si, publicar"
-    }).then(function(result){
-
-      if(result.isConfirmed)
-      {
-        window.location.href="/aprobar_atencion/"+observacion+"/";
-      }
-
-    })
-  }
-</script>
 
 <div class="container mt-5">
     <div class="text-center">
@@ -52,6 +16,7 @@
 
 <table class="table">
     <thead>
+      
       <tr>
         <th scope="col"> usuario </th>
         <th scope="col">fecha</th>
@@ -60,6 +25,7 @@
         <th scope="col">categoria</th>
         <th scope="col"> observacion </th>
         <th scope="col"> fotografia </th>
+        <th scope="col"> Motivo de rechazo </th>
         <th scope="col"> Opciones </th>
       </tr>
     </thead>
@@ -83,8 +49,8 @@
                   class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
                 {% endif%}      
         </td>
-        
-                </a>
+       <td>{{p.motivo_rechazo}}</td>
+                
         
         <td>
             <a href="{% url 'modificar_atencion' p.observacion %}" class="btn btn-success btn-sm" >Modificar </a>

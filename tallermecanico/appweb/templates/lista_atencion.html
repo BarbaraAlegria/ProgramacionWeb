@@ -4,24 +4,28 @@
 
 
 <script>
-  function eliminarAtencion(observacion)
-  {
-    Swal.fire({
-      "title": "Advertencia",
-      "text": "¿Esta seguro que desea rechazar la atencion?",
-      "icon": "question",
-      "showCancelButton": true,
-      "cancelButtonText": "No, cancelar",
-      "confirmButtonText":"Si, rechazar"
-    }).then(function(result){
+  function eliminarAtencion(observacion) {
+  Swal.fire({
+    title: '¿Está seguro que desea rechazar la atención?',
+    input: 'text',
+    inputAttributes: {
+      autocapitalize: 'off'
+    },
+    showCancelButton: true,
+    cancelButtonText: "No, cancelar",
+    confirmButtonText: "Si, rechazar"
+  }).then(function(result) {
+    if (result.isConfirmed) {
+      var motivoRechazo = Swal.getInput().value;
+      localStorage.setItem('motivoRechazo', motivoRechazo);
+      window.location.href = "/eliminar_atencion/" + observacion + "/";
+    }
+  });
+}
+var motivoRechazo = localStorage.getItem('motivoRechazo');
+// Utiliza el valor de motivoRechazo en la vista según sea necesario
 
-      if(result.isConfirmed)
-      {
-        window.location.href="/eliminar_atencion/"+observacion+"/";
-      }
 
-    })
-  }
   function aprobarAtencion(observacion)
   {
     Swal.fire({
@@ -35,6 +39,7 @@
 
       if(result.isConfirmed)
       {
+        
         window.location.href="/aprobar_atencion/"+observacion+"/";
       }
 
@@ -90,6 +95,8 @@
         <td>
           <a href="#" onclick="aprobarAtencion('{{p.observacion}}')"  class="btn btn-success btn-sm" >Aprobar </a>
           <a href="#" onclick="eliminarAtencion('{{p.observacion}}')" class="btn btn-danger btn-sm" >Rechazar </a>
+          
+
 
         </td>
       </tr>
