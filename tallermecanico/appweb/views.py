@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Mecanico,Atencion,list_categoria,Cargo
-from .forms import ContactoForm, MecanicoForm, AtencionForm
+from .models import Mecanico,Atencion,list_categoria,Cargo,Categoria,Contacto,Postulante
+from .forms import ContactoForm, MecanicoForm, AtencionForm,PostulanteForm
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, permission_required
 from datetime import datetime
 import logging
+
 
 logger = logging.getLogger(__name__)
 # Create your views here.
@@ -194,8 +195,8 @@ def lista_atencion(request):
 
 
 
-def aprobar_atencion(request, observacion):
-    atencion = get_object_or_404(Atencion, observacion=observacion)
+def aprobar_atencion(request, id_atencion):
+    atencion = get_object_or_404(Atencion, id_atencion=id_atencion)
     atencion.Estado=1
     atencion.save()
     messages.success(request, "La publicacion del usuario fue aprobada correctamente")
@@ -214,9 +215,10 @@ def lista_atenciones_aprobadas(request):
     }
     return render(request, "atencionesAprobadas.html",data)
 
-def eliminar_atencion(request, observacion):
+
+def eliminar_atencion(request, id_atencion):
     motivo_rechazo=request.GET.get('motivo_rechazo', '')
-    atencion = get_object_or_404(Atencion, observacion=observacion)
+    atencion = get_object_or_404(Atencion, id_atencion=id_atencion)
     atencion.Estado=2
     atencion.motivoRechazo=motivo_rechazo
 
@@ -232,9 +234,9 @@ def lista_atencion_rechazada(request):
     print(data)
     return render(request, "atencionesRechazadas.html",data)
 
-def modificar_atencion(request,observacion):
+def modificar_atencion(request,id_atencion):
 
-    atencion = get_object_or_404(Atencion, observacion=observacion)
+    atencion = get_object_or_404(Atencion, id_atencion=id_atencion)
     atencion.Estado=2
 
     data = {
@@ -253,6 +255,12 @@ def modificar_atencion(request,observacion):
 
     return render(request, "modificarAtencion.html",data)
 
+def listar_contacto(request):
+    contactos = Contacto.objects.all()
+    data = {
+        "contactos" : contactos
+    }
+    return render(request, "lista_contacto.html", data)
 
 
 def servicio(request):
@@ -282,14 +290,6 @@ def vistaPrevia(request):
 def pagscanner(request):
     return render(request, "pagscanner.html")
 
-
-
-
-
-
-
-
-
 def pagmecanicos(request):
     mecanicos = None
     nombreCargo = request.GET.get('nom_cargo', '')
@@ -309,7 +309,27 @@ def pagmecanicos(request):
     return render(request, "pagmecanicos.html", data)
 
 
+def registrar_postulante(request):
+    data= {
+        'form': PostulanteForm,
+        'mensaje':""
+    }
+    if request.method == "POST":
+        formulario = PostulanteForm(data=request.POST, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            data["mensaje"] = "La atencion se ha registrado"
+        else:
+            data["mensaje"] = "Hubo un error"
+            data["form"] = formulario
+  
+    return render(request, "formulario_postulante.html",data)
 
-
-
+def lista_postulante(request):
+    postulantes = Postulante.objects.all()
+    data = {
+        "postulantes" : postulantes
+    }
+    print(data)
+    return render(request, "lista_postulante.html",data)
 

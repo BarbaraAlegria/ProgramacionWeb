@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+
+
+
+
+<div class="container mt-5">
+    <div class="text-center">
+      <h2 class="mt-4">Mensajes Recibidos</h2>  
+    </div>
+   <br>
+   <br>
+<table class="table">
+    <thead>
+      
+      <tr>
+        <th scope="col"> Nombre </th>
+        <th scope="col">Correo</th>
+        <th scope="col">Telefono Contacto</th>
+        <th scope="col">Tipo Mensaje</th>
+        <th scope="col">Mensaje</th>
+       
+      </tr>
+    </thead>
+    <tbody>
+        {% for p in contactos %}
+      <tr>
+        <td>{{p.nombre}}</td>
+        <td>{{p.email}}</td>
+        <td>{{p.telefono}}</td>
+        <td>{{p.get_tipo_contacto_display}}</td>
+        <td>{{p.mensaje}}</td>
+        
+        
+        
+                
+        
+        <td>
+            <a href="#" class="btn btn-success btn-sm" >Modificar </a>
+
+        </td>
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+  <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás"
+    value="volver atrás"></center>
+</div>
+  {% endblock %}

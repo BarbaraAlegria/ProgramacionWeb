@@ -13,5 +13,7 @@ admin.site.register(Cargo)
 admin.site.register(Mecanico, MecanicoAdmin)
 admin.site.register(Contacto)
 admin.site.register(Atencion)
+admin.site.register(Categoria)
+admin.site.register(Postulante)
 
 

@@ -3,6 +3,22 @@
 
 {% block contenido %}
 {% load crispy_forms_tags %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelector('#contacto').addEventListener('submit', function(event) {
+        event.preventDefault(); 
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Mensaje Enviado',
+          showConfirmButton: false,
+          timer: 1500
+        }).then(function() {
+          event.target.submit(); 
+        });
+      });
+    });
+  </script>
 
     <!--- Franja -->
     <figure class="figure">

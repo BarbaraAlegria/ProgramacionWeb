@@ -16,8 +16,8 @@ urlpatterns = [
     path('sesion/', sesion, name= "sesion"),
     path('vistaPrevia/',vistaPrevia,name="vistaPrevia"),
     path('lista_atencion/',lista_atencion,name="lista_atencion"),
-    path('eliminar_atencion/<observacion>/', eliminar_atencion, name="eliminar_atencion"),
-    path('aprobar_atencion/<observacion>/', aprobar_atencion, name="aprobar_atencion"),
+    path('eliminar_atencion/<id_atencion>/', eliminar_atencion, name="eliminar_atencion"),
+    path('aprobar_atencion/<id_atencion>/', aprobar_atencion, name="aprobar_atencion"),
     path('atencionesAprobadas/', lista_atenciones_aprobadas, name="lista_atenciones_aprobadas"),
     path('servicio/',servicio,name="servicio"),
     path('pagfrenos/',pagfrenos,name="pagfrenos"),
@@ -27,7 +27,12 @@ urlpatterns = [
     path('tareasadministrador/',tareasadministrador,name="tareasadministrador"),
     path('tareasMecanico/',tareasMecanico,name="tareasMecanico"),
     path('atencionesRechazadas/',lista_atencion_rechazada,name="lista_atencion_rechazada"),
-    path('modificarAtencion/<observacion>/',modificar_atencion,name="modificar_atencion"),
-
-
+    path('modificarAtencion/<id_atencion>/',modificar_atencion,name="modificar_atencion"),
+    path('lista_contacto/',listar_contacto,name="listar_contacto"),
+    path('formulario_postulante/',registrar_postulante,name="registrar_postulante"),
+    path('lista_postulante/',lista_postulante,name="lista_postulante"),
 ]
+    
+
+
+

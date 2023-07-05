@@ -1,5 +1,5 @@
 from django import forms
-from .models import Contacto,Mecanico,Atencion
+from .models import Contacto,Mecanico,Atencion,Postulante
 
 
 class ContactoForm(forms.ModelForm):
@@ -35,3 +35,20 @@ class AtencionForm(forms.ModelForm):
             "fecha": forms.DateTimeInput(attrs={'type':'date'}, format=('%Y-%m-%d'))
             
         }
+
+class PostulanteForm(forms.ModelForm):
+
+    class Meta: 
+        model = Postulante
+        fields = "__all__"
+
+        
+
+        widgets = {
+            
+            "fecha_nacimiento": forms.DateTimeInput(attrs={'type':'date'}, format=('%Y-%m-%d'))
+            
+        }
+
+
+        

@@ -46,48 +46,37 @@
 
 <div class="container mt-5">
     <div class="text-center">
-      <h2 class="mt-4">Listar Atenciones</h2>  
+      <h2 class="mt-4">Lista Postulantes</h2>  
     </div>
    
 
+<br>
+<br>
 
 
 <table class="table">
     <thead>
       <tr>
-        <th scope="col"> usuario </th>
-        <th scope="col">fecha</th>
-        <th scope="col">monto</th>
-        <th scope="col">Modelo</th>
-        <th scope="col">categoria</th>
-        <th scope="col"> observacion </th>
-        <th scope="col"> fotografia </th>
+        <th scope="col"> Nombre </th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Correo</th>
+        <th scope="col">Edad</th>
+        <th scope="col">Cargo al que postula</th>
+        <th scope="col">CV </th>
+        
         <th scope="col"> Opciones </th>
       </tr>
     </thead>
     <tbody>
-        {% for p in aten %}
+        {% for p in postulantes %}
       <tr>
-        <td>{{p.usuario}}</td>
-        <td>{{p.fecha}}</td>
-        <td>{{p.monto}}</td>
-        <td>{{p.Modelo}}</td>
-        <td>{{p.categoria}}</td>
-        <th >{{p.observacion}}</th>
+        <td>{{p.nombre}}</td>
+        <td>{{p.apellido}}</td>
+        <td><a href="mailto:{{ p.email }}">{{ p.email }}</a></td>
+        <td>{{p.edad}}</td>
+        <td>{{p.cargo_postulacion}}</td>
+        <td><a href="{{ p.cv.url }}">Descargar CV</a></td>
         
-        <td>
-          {% if p.fotografia %}
-                <img width="50" height="50"
-                  src="{{p.fotografia.url}}"
-                  class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
-                {% else %}
-                  <img width="270" height="350"
-                  src=""
-                  class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
-                {% endif%}      
-        </td>
-        
-                </a>
         
         <td>
           <a href="#" onclick="aprobarAtencion('{{p.id_atencion}}')"  class="btn btn-success btn-sm" >Aprobar </a>
@@ -97,6 +86,7 @@
 
         </td>
       </tr>
+  
       {% endfor %}
       
     </tbody>

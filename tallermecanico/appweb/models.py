@@ -1,15 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 
 class Cargo(models.Model):
+    
     nombre = models.CharField(max_length=50)
 
     def __str__(self):
         return self.nombre
  
 class Mecanico(models.Model):
+    id_atencion = models.AutoField(primary_key=True,default=1)
     rut = models.CharField(max_length=10)
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=80)
@@ -30,6 +33,7 @@ list_tipo_contacto = [
 ]
 
 class Contacto(models.Model):
+   
     nombre = models.CharField(max_length=50)
     email = models.EmailField()
     telefono = models.IntegerField()
@@ -40,6 +44,13 @@ class Contacto(models.Model):
     def __str__(self):
         return self.nombre   
     
+class Categoria(models.Model):
+    
+    nombre_categoria = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nombre_categoria    
+    
 list_categoria = [
     [0, "Mantencíon de kilometraje"],
     [1, "Cambio de aceite"],
@@ -49,15 +60,30 @@ list_categoria = [
     [5, "otros"]
 ]
 class Atencion(models.Model):
+    id_atencion = models.AutoField(primary_key=True)
+
     fecha = models.DateField()
     monto = models.IntegerField()
     Modelo = models.CharField(max_length=100)
-    categoria = models.IntegerField(choices=list_categoria)
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     observacion = models.TextField()
     motivoRechazo = models.TextField(null=True,blank=True)
     Estado = models.IntegerField(default=0)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     fotografia = models.ImageField(null=True, upload_to='categoria')
 
-    def __str__(self):
-        return self.observacion
+    def __int__(self):
+        return self.id_atencion
+
+class Postulante(models.Model):
+    id_postulante=models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=100)
+    apellido = models.CharField(max_length=80)
+    email = models.EmailField()
+    edad = models.IntegerField()
+    cargo_postulacion = models.ForeignKey(Cargo, on_delete=models.PROTECT)
+    cv= models.FileField(upload_to='cv/')  
+ 
+    def __int__(self):
+        return self.id_postulante
+    

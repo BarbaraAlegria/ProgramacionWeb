@@ -1,11 +1,29 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block contenido %}
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('#formAgregar').addEventListener('submit', function(event) {
+      event.preventDefault(); // Evita el envío del formulario
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Mecánico Agregado',
+        showConfirmButton: false,
+        timer: 1500
+      }).then(function() {
+        event.target.submit(); // Envía el formulario después de mostrar el mensaje
+      });
+    });
+  });
+</script>
 <div class="container mt-5">
   <div class="text-center">
     <h2 class="mt-4">Agregar profesional</h2>  
   </div>
-  <h3>{{mensaje}}</h3>
+  
   <form id="formAgregar" method="post" action="" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form | crispy }}
