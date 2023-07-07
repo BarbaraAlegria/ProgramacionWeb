@@ -4,40 +4,20 @@
 
 
 <script>
-  function eliminarAtencion(id_atencion) {
-  Swal.fire({
-    title: 'Ingrese el motivo del rechazo',
-    input: 'text',
-    inputAttributes: {
-      autocapitalize: 'off'
-    },
-    showCancelButton: true,
-    cancelButtonText: "No, cancelar",
-    confirmButtonText: "Si, rechazar"
-  }).then(function(result) {
-    if (result.isConfirmed) {
-      window.location.href = "/eliminar_atencion/" + id_atencion + "?motivo_rechazo="+result.value;
-    }
-  });
-}
-// Utiliza el valor de motivoRechazo en la vista según sea necesario
-
-
-  function aprobarAtencion(id_atencion)
+  function eliminarpostulante(id_postulante)
   {
     Swal.fire({
       "title": "Advertencia",
-      "text": "¿Esta seguro que deseas publicar esta atención?",
+      "text": "¿Esta seguro que desea eliminar esta postulación?",
       "icon": "question",
       "showCancelButton": true,
       "cancelButtonText": "No, cancelar",
-      "confirmButtonText":"Si, publicar"
+      "confirmButtonText":"Si, eliminar"
     }).then(function(result){
 
       if(result.isConfirmed)
       {
-        
-        window.location.href="/aprobar_atencion/"+id_atencion+"/";
+        window.location.href="/eliminar_postulante/"+id_postulante+"/";
       }
 
     })
@@ -59,11 +39,8 @@
       <tr>
         <th scope="col"> Nombre </th>
         <th scope="col">Apellido</th>
-        <th scope="col">Correo</th>
-        <th scope="col">Edad</th>
         <th scope="col">Cargo al que postula</th>
-        <th scope="col">CV </th>
-        
+        <th scope="col">Experiencia </th>
         <th scope="col"> Opciones </th>
       </tr>
     </thead>
@@ -72,16 +49,13 @@
       <tr>
         <td>{{p.nombre}}</td>
         <td>{{p.apellido}}</td>
-        <td><a href="mailto:{{ p.email }}">{{ p.email }}</a></td>
-        <td>{{p.edad}}</td>
         <td>{{p.cargo_postulacion}}</td>
-        <td><a href="{{ p.cv.url }}">Descargar CV</a></td>
+        <td>{{p.experiencia}}</td>
         
         
         <td>
-          <a href="#" onclick="aprobarAtencion('{{p.id_atencion}}')"  class="btn btn-success btn-sm" >Aprobar </a>
-          <a href="#" onclick="eliminarAtencion('{{p.id_atencion}}')" class="btn btn-danger btn-sm" >Rechazar </a>
-          
+          <a href="{% url 'Inform_postulante' p.id_postulante %}" class="btn btn-success btn-sm" >Ver Información </a>
+          <a href="#" onclick="eliminarpostulante('{{p.id_postulante}}')" class="btn btn-danger btn-sm" >Eliminar </a>
 
 
         </td>

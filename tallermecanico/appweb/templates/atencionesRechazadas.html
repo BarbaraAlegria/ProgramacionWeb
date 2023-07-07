@@ -8,7 +8,7 @@
 
 <div class="container mt-5">
     <div class="text-center">
-      <h2 class="mt-4">Atenciones Rechazadas</h2>  
+      <h2 class="mt-4">Estado de atenciones </h2>  
     </div>
    
 
@@ -21,6 +21,7 @@
         <th scope="col"> usuario </th>
         <th scope="col">fecha</th>
         <th scope="col">monto</th>
+        <th scope="col">Estado</th>
         <th scope="col">Modelo</th>
         <th scope="col">categoria</th>
         <th scope="col"> observacion </th>
@@ -35,6 +36,7 @@
         <td>{{p.usuario}}</td>
         <td>{{p.fecha}}</td>
         <td>{{p.monto}}</td>
+        <td>{{p.Estado}}</td>
         <td>{{p.Modelo}}</td>
         <td>{{p.categoria}}</td>
         <th scope="row">{{p.observacion}}</th>
@@ -57,8 +59,29 @@
 
         </td>
       </tr>
-      {% endfor %}
       
+      {% endfor %}
+      {% for p in pendientes %}
+      <tr>
+        <td>{{p.usuario}}</td>
+        <td>{{p.fecha}}</td>
+        <td>{{p.monto}}</td>
+        <td>{{p.Estado}}</td>
+        <td>{{p.Modelo}}</td>
+        <td>{{p.categoria}}</td>
+        <th scope="row">{{p.observacion}}</th>
+        <td>
+          {% if p.fotografia %}
+                <img width="50" height="50"
+                  src="{{p.fotografia.url}}"
+                  class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
+                {% else %}
+                  <img width="270" height="350"
+                  src=""
+                  class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
+                {% endif%}      
+        </td>
+        {% endfor %}
     </tbody>
   </table>
   <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás"

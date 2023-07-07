@@ -28,7 +28,7 @@
         {% for p in contactos %}
       <tr>
         <td>{{p.nombre}}</td>
-        <td>{{p.email}}</td>
+        <td><a href="mailto:{{ p.email }}">{{ p.email }}</a</td>
         <td>{{p.telefono}}</td>
         <td>{{p.get_tipo_contacto_display}}</td>
         <td>{{p.mensaje}}</td>

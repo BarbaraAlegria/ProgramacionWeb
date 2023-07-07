@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+
+<div class="container" style="margin-top: 50px">
+  <center><h2>Postulante</h2></center>
+    
+  <div id="profesionales_excelencia" class="row">
+    <div class="cont-profesionales col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <br>
+      <br>
+      <br>
+      <div class="cont-listado row">
+        <div class="row " id="menu">
+            {% for p in postulantes %}
+            <div class="col-md-6 p-3" style="background-color:#D6EAF8;">
+                
+                <h4> {{p.nombre}} {{p.apellido}}</h4>
+                <p>Estimado/a consejo de reclutadores,</p>
+
+                <p>Mi nombre es {{p.nombre}} {{p.apellido}} tengo {{p.edad}} años y estoy interesado/a en el puesto de {{p.cargo_postulacion}}. Me gustaría 
+                    presentarle mi candidatura y 
+                    compartir mi experiencia en el campo.</p>
+
+                <p> Estoy entusiasmado/a por la oportunidad de aplicar mis conocimientos y contribuir al éxito de su empresa.</p>
+
+                <p>Adjunto a esta carta, encontrará mi correo y mi currículum vitae detallando mi experiencia y formación académica. Estoy 
+                    disponible para una entrevista en persona o por teléfono para discutir cómo puedo encajar en su equipo y aportar valor.</p>
+                 <ul>
+                    <li><strong>currículum vitae:</strong> <a href="{{ p.cv.url }}">Descargar CV</a></li>
+                    <li><strong>Correo:</strong><a href="mailto:{{ p.email }}">{{ p.email }}</a></li>
+        
+                </ul>
+
+                <p>Agradezco su tiempo y consideración. Espero tener la oportunidad de hablar con usted pronto.</p>
+
+                <p>Atentamente,<br>
+                {{p.nombre}} {{p.apellido}}</p>
+            </div>
+            <!--- Contenido -->
+            <div class="col-md-6 p-3" style="background-color:#AED6F1;">
+                <br>
+                <br>
+                <center><a href="#">               
+                    {% if p.fotografia %}
+                    <img width="270" height="350"
+                      src="{{p.fotografia.url}}"
+                      class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
+                    {% else %}
+                      <img width="270" height="350"
+                      src=""
+                      class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
+                    {% endif%}      
+                    </a>
+                </center>
+                {{mensaje}}
+            </div>
+            {% endfor %}
+        </div>
+
+
+
+
+
+
+        <section>
+          <br>
+          <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás" value="volver atrás"></center>
+          
+        </section>
+    
+
+
+
+
+    </div>
+  </div>
+</div>
+{% endblock %}

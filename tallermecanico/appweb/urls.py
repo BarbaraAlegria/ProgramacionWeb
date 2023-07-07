@@ -31,6 +31,9 @@ urlpatterns = [
     path('lista_contacto/',listar_contacto,name="listar_contacto"),
     path('formulario_postulante/',registrar_postulante,name="registrar_postulante"),
     path('lista_postulante/',lista_postulante,name="lista_postulante"),
+    path('informacion_postulante/<id_postulante>/',Inform_postulante,name="Inform_postulante"),
+    path('eliminar_postulante/<id_postulante>/', eliminar_postulante, name="eliminar_postulante"),
+    path('informacion_atencion/<id_atencion>/',Inform_atenciones,name="Inform_atenciones"),
 ]
     
 

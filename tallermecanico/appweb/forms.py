@@ -32,7 +32,9 @@ class AtencionForm(forms.ModelForm):
         widgets = {
             'motivoRechazo': forms.HiddenInput(),
             'Estado': forms.HiddenInput(),
-            "fecha": forms.DateTimeInput(attrs={'type':'date'}, format=('%Y-%m-%d'))
+            "fecha": forms.DateTimeInput(attrs={'type':'date'}, format=('%Y-%m-%d')),
+            'usuario': forms.HiddenInput(),
+            
             
         }
 

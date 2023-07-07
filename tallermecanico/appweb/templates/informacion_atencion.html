@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+    
+<div class="container" style="margin-top: 50px" >  
+  <div id="profesionales_excelencia" class="row" >
+    <div class="cont-profesionales col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <center><h2>Nuestras atenciones</h2></center>
+      <br>
+      <br>
+      <br>
+      <div class="cont-listado row">
+        <div class="row " id="menu">
+            {% for p in atencion %}
+            <div class="col-md-6 p-3" style="background-color:#AEB6BF ;">
+                
+                <h4> {{p.categoria}}</h4>
+                <p>El automóvil de modelo {{ p.Modelo }} fue reparado exitosamente en el día {{ p.fecha }}.Hemos 
+                    realizado todas las reparaciones y ajustes necesarios para asegurar su correcto funcionamiento.</p>
+                <p>El monto aproximado del servicio de reparación fue de {{ p.monto }}. Nuestro equipo de profesionales dedicó tiempo y
+                   esfuerzo para garantizar que este vehículo esté en óptimas condiciones.</p>
+                <p>Valoramos la confianza que tienen nuestros clientes con nuestros servicios. </p>
+                    
+                    <strong> Si tienes 
+                            alguna pregunta o inquietud adicional, no dudes en contactarnos.</strong> 
+            </div>
+            <!--- Contenido -->
+            <div class="col-md-6 p-3" style="background-color:#566573;">
+                <br>
+                <br>
+                <center><a href="#">               
+                    {% if p.fotografia %}
+                    <img width="270" height="350"
+                      src="{{p.fotografia.url}}"
+                      class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
+                    {% else %}
+                      <img width="270" height="350"
+                      src=""
+                      class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
+                    {% endif%}      
+                    </a>
+                </center>
+                {{mensaje}}
+            </div>
+            {% endfor %}
+        </div>
+
+
+
+
+
+
+        <section>
+          <br>
+          <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás" value="volver atrás"></center>
+          <br>
+        </section>
+    
+        <div>
+            <img src="{% static './imagen/dato.png'%}" style="float: left">
+            <p></p>
+        </div>
+    
+
+
+
+
+    </div>
+  </div>
+</div>
+{% endblock %}

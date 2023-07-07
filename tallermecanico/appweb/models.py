@@ -68,8 +68,8 @@ class Atencion(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     observacion = models.TextField()
     motivoRechazo = models.TextField(null=True,blank=True)
-    Estado = models.IntegerField(default=0)
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    Estado = models.CharField(max_length=50, default='Pendiente')
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     fotografia = models.ImageField(null=True, upload_to='categoria')
 
     def __int__(self):
@@ -82,6 +82,8 @@ class Postulante(models.Model):
     email = models.EmailField()
     edad = models.IntegerField()
     cargo_postulacion = models.ForeignKey(Cargo, on_delete=models.PROTECT)
+    experiencia = models.CharField(max_length=100)
+    fotografia = models.ImageField(null=True, upload_to='postulantes')
     cv= models.FileField(upload_to='cv/')  
  
     def __int__(self):

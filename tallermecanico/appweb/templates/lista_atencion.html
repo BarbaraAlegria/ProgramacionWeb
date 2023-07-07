@@ -59,9 +59,11 @@
         <th scope="col">fecha</th>
         <th scope="col">monto</th>
         <th scope="col">Modelo</th>
+        <th scope="col"> estado </th>
         <th scope="col">categoria</th>
         <th scope="col"> observacion </th>
         <th scope="col"> fotografia </th>
+        
         <th scope="col"> Opciones </th>
       </tr>
     </thead>
@@ -72,12 +74,13 @@
         <td>{{p.fecha}}</td>
         <td>{{p.monto}}</td>
         <td>{{p.Modelo}}</td>
+        <td>{{p.Estado}}</td>
         <td>{{p.categoria}}</td>
         <th >{{p.observacion}}</th>
         
         <td>
           {% if p.fotografia %}
-                <img width="50" height="50"
+                <img width="70" height="70"
                   src="{{p.fotografia.url}}"
                   class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
                 {% else %}
