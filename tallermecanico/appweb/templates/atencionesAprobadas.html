@@ -31,7 +31,7 @@
     <div class="cont-profesionales col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="cont-listado row">
         {% for p in aten %}
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 text-center">
           <div class="prof int">
             <figure>
               
@@ -46,8 +46,12 @@
                   class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
                 {% endif%}      
                 </a>
-    
-              <p class="nombre white">Categoria:{{p.categoria}}</p>
+                <ul class="list-group">
+                  <li class="list-group-item">Id Atencion:{{p.id_atencion}}</li>
+                  <li class="list-group-item">Modelo:{{p.Modelo}}</li>
+                  <li class="list-group-item">Categoria:{{p.categoria}}</li>
+                </ul>
+              
             </figure>
             <br>
             <br>

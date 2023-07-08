@@ -17,6 +17,7 @@ class MecanicoForm(forms.ModelForm):
         fields = "__all__"
 
         widgets = {
+            'usuario': forms.HiddenInput(),
             "fecha_nacimiento": forms.DateTimeInput(attrs={'type':'date'}, format=('%Y-%m-%d'))
         }
 

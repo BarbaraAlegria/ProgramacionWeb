@@ -58,8 +58,16 @@
 
         <form class="form-inline my-2 my-lg-0">
           <input id="buscador" name="buscador" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+          <span class="form-control-clear glyphicon glyphicon-remove form-control-feedback hidden"></span>
           <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-          
+          <div class="sticky-top">
+            <div class="card" style="position: fixed;">
+              <div class="float-sm-start">
+                <div id="resultado_busqueda">
+                </div>
+              </div>
+            </div>
+          </div>
         </form>
 
         <div class="text-end">
@@ -85,10 +93,23 @@
     </div>
   </header>
 
-  <div id="resultado_busqueda" class="container">
+      
+    
+ 
+  <div class="text-center">
+    {% if mensaje_error|length > 0 %}
+    <p class="p-1 alert alert-danger" role="alert">
+      {{mensaje_error}}
+    </p>
+    {% endif %}
+    {% if mensaje_success|length > 0 %}
+    <p class="p-1 alert alert-success" role="alert">
+      {{mensaje_success}}
+    </p>
+    {% endif %}
   </div>
   <main>
-
+    
     {% block contenido %}
     {% endblock %}
 
@@ -118,16 +139,31 @@
   </footer>
 </body>
 <script>
-  $('#buscador').keypress(function(e){
-    var search_text=this.value
-    console.log(this.value);
+
+  $('#buscador').on('input',function(e){
+    var search_text=this.value.trim()
+    console.log(search_text)
+    if(search_text==''){
+      console.log('Texto vacio')
+      $('#resultado_busqueda').hide();
+      return;
+    }
+  });
+  $('#buscador').keyup(function(e){
+    var search_text=this.value.trim()
+    console.log(search_text)
+    if(search_text==''){
+      console.log('Texto vacio')
+      $('#resultado_busqueda').hide();
+      return;
+    }
     $.ajax({
         url: "/busqueda_atenciones?search_text="+search_text,
         type: "GET",
         dataType: "html",
         success: (data) => {
-          console.log(data);
           $('#resultado_busqueda').html(data);
+          $('#resultado_busqueda').show();
         },
         error: (error) => {
           console.log(error);

@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required, permission_required
 from datetime import datetime
 from django.views.generic import ListView
+from django.db.models import Q
 import logging
 
 
@@ -51,12 +52,33 @@ def agregar_mecanico(request):
     if request.method == "POST":
         formulario = MecanicoForm(data=request.POST, files=request.FILES)
         if formulario.is_valid():
-            formulario.save()
-            data["mensaje"] = "El profesional se ha guardado"
+            correo = request.POST.get("correo")
+            password1 = request.POST.get("password1")
+            password2 = request.POST.get("password2")
+            if password1 != password2:
+                data["mensaje_error"] = "Las contraseñas deben ser iguales"
+            else:
+                usu = User()
+                usu.set_password(password1)
+                usu.email = correo
+                usu.username = correo
+                usu.first_name = formulario.cleaned_data["nombre"]
+                usu.last_name = formulario.cleaned_data["apellido"]
+                grupo = Group.objects.get(name='mecanico')
+                
+                usu.save()
+                usu.groups.add(grupo)
+               
+                formulario.save()
+                mecanico = get_object_or_404(Mecanico, rut=formulario.cleaned_data["rut"])
+                mecanico.usuario=usu
+                mecanico.save()
+                data["mensaje_success"] = "El profesional se ha guardado"
+                return redirect(to="listar_mecanicos")
         else:
-            data["mensaje"] = "Hubo un error"
+            data["mensaje_error"] = "Hubo un error"
             data["form"] = formulario
-
+    
     return render(request, "mantenedor/profesional/agregar.html", data)
 
 
@@ -94,7 +116,7 @@ def modificar_mecanico(request,rut):
 
 def eliminar_mecanico(request, rut):
     mecanico = get_object_or_404(Mecanico, rut=rut)
-
+    mecanico.usuario.delete()
     mecanico.delete()
     messages.success(request, "El profesional rut: "+ rut + " fue eliminado correctamente")
     return redirect(to="listar_mecanicos")
@@ -328,8 +350,14 @@ def busquedaAtenciones(request):
     
     text = request.GET.get('search_text', '')
     categoria=Categoria.objects.filter(nombre_categoria__contains=text).last()
-    print(categoria)
-    aten = Atencion.objects.filter(Estado='Aprobada',categoria=categoria)
+    mecanico=Mecanico.objects.filter(nombre__contains=text).last()
+    usuario=None
+    if mecanico is not None:
+        usuario=mecanico.usuario
+        print(usuario)
+    aten = Atencion.objects.filter(Q(Estado='Aprobada'),
+                                   Q(categoria=Categoria.objects.filter(nombre_categoria__contains=text).last()) 
+                                   | Q(usuario=usuario))
     data = {
         "aten" : aten
     }

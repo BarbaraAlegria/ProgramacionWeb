@@ -12,7 +12,7 @@ class Cargo(models.Model):
         return self.nombre
  
 class Mecanico(models.Model):
-    id_mecanico = models.AutoField(primary_key=True,default=1)
+    id_mecanico = models.AutoField(primary_key=True)
     rut = models.CharField(max_length=10)
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=80)

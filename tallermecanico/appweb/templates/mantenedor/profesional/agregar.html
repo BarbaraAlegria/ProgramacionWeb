@@ -3,34 +3,35 @@
 {% block contenido %}
 
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('#formAgregar').addEventListener('submit', function(event) {
-      event.preventDefault(); // Evita el envío del formulario
-      Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Mecánico Agregado',
-        showConfirmButton: false,
-        timer: 1500
-      }).then(function() {
-        event.target.submit(); // Envía el formulario después de mostrar el mensaje
-      });
-    });
-  });
-</script>
+
 <div class="container mt-5">
+  
+  
   <div class="text-center">
     <h2 class="mt-4">Agregar profesional</h2>  
   </div>
   
-  <form id="formAgregar" method="post" action="" enctype="multipart/form-data">
+  <form id="formAgregar" method="post" action="" enctype="multipart/form-data"
+    oninput='password2.setCustomValidity(password1.value != password2.value ? "Passwords no son iguales." : "")'>
+    <div class="form-group">
+      <label for="nombre">Correo:</label>
+      <input type="email" class="form-control" name="correo" required>
+    </div>
+    <div class="form-group">
+      <label for="nombre">Password:</label>
+      <input type="password" class="form-control" name="password1" required>
+    </div>
+
+    <div class="form-group">
+      <label for="nombre">Repita su Password:</label>
+      <input type="password" class="form-control" name="password2" required>
+    </div>
     {% csrf_token %}
     {{ form | crispy }}
     <button type="submit" class="btn btn-primary">Agregar</button>
     <button type="reset" class="btn btn-danger">Limpiar</button>
-    <center><input type="button" class="btn btn-secondary btn" onclick="history.back()"
-      name="volver atrás" value="volver atrás"></center>
+    <a class="btn btn-secondary btn" href="{% url 'listar_mecanicos'%}" role="button">Volver</a>
+   
 
 </form>
 
