@@ -8,12 +8,14 @@
       window.location.href="/pagmecanicos?nom_cargo="+$('#filter_cargo').val();
   }
 </script>
+<figure class="figure">
+  <img src="{% static './imagen/fotoEquipo.jpeg'%}" class="figure-img img-fluid rounded" alt="...">
+  <figcaption class="figure-caption"></figcaption>
+</figure>
 
 <div class="container" style="margin-top: 50px">
   <center><h2>Nuestros Profesionales</h2></center>
-  <p>Nuestro equipo altamente capacitado de mecánicos expertos está comprometido con la excelencia en el mantenimiento y 
-    reparación de vehículos. Utilizamos las últimas herramientas y tecnologías para asegurarnos de que tu automóvil reciba 
-    el mejor cuidado posible.</p>
+  
     
     <label for="filter_cargo">Buscar por cargo:</label>
 <select name="filter_cargo" id="filter_cargo" onchange="filtrar()">
@@ -45,7 +47,7 @@
           
           <div class="prof int">
             <figure>
-              <a href="#">               
+              <a href="{% url 'Inform_mecanico' p.id_mecanico %}">              
                 {% if p.foto %}
                 <img width="270" height="350"
                   src="{{p.foto.url}}"
@@ -57,8 +59,8 @@
                 {% endif%}      
                 </a>
             
-              <h4 class="nombre white">{{p.nombre}} {{p.apellido}}</h4>
-              <span class="cargo" style="display: none;">Director Odontológico</span>
+              
+              
             </figure>
             <div class="details">
               <p class="extracto">{{p.cargo}}</p>

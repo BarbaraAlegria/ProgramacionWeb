@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+    
+<div class="container" style="margin-top: 50px" >  
+  <div id="profesionales_excelencia" class="row" >
+    <div class="cont-profesionales col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <center><h2>Nuestros Profesionales </h2></center>
+      <br>
+      <br>
+      <br>
+      <div class="cont-listado row">
+        <div class="row " id="menu">
+            {% for p in mecanico %}
+            <div class="col-md-6 p-3" style="background-color:#AEB6BF ;">
+                
+                <h4>{{p.nombre}} {{p.apellido}}</h4>
+                <p>{{p.nombre}} es un/a experto/a en {{p.cargo}}. Durante su tiempo trabajando con nosotros, ha demostrado constantemente sus habilidades y 
+                    esfuerzo en cada mantenimiento y reparación de los automóviles. Su compromiso con la excelencia y la satisfacción del cliente es admirable.</p>
+                <p>Además de su destacada destreza técnica, {{p.nombre}} se destaca por su habilidad para mantener a los clientes informados 
+                    sobre el progreso de las reparaciones. Su capacidad para explicar de manera clara y comprensible los problemas y las soluciones propuestas es 
+                    invaluable para establecer una comunicación efectiva y brindar un servicio de calidad.</p>
+                    
+                    <strong> Si tienes 
+                            alguna pregunta o inquietud adicional, no dudes en contactarnos.</strong> 
+            </div>
+            <!--- Contenido -->
+            <div class="col-md-6 p-3" style="background-color:#566573;">
+                <br>
+                <br>
+                <center><a href="#">               
+                    {% if p.foto %}
+                    <img width="270" height="350"
+                      src="{{p.foto.url}}"
+                      class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
+                    {% else %}
+                      <img width="270" height="350"
+                      src=""
+                      class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
+                    {% endif%}      
+                    </a>
+                </center>
+                {{mensaje}}
+            </div>
+            {% endfor %}
+        </div>
+
+
+
+
+
+
+        <section>
+          <br>
+          <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás" value="volver atrás"></center>
+          <br>
+        </section>
+    
+        <div>
+            <img src="{% static './imagen/dato.png'%}" style="float: left">
+            <p></p>
+        </div>
+    
+
+
+
+
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">fecha</th>
+      <th scope="col">Modelo</th>
+      <th scope="col">categoria</th>
+      <th scope="col"> fotografia </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for p in aten %}
+    <tr>
+      <td>{{p.fecha}}</td>
+      <td>{{p.Modelo}}</td>
+      <td>{{p.categoria}}</td>
+      <td>
+        {% if p.fotografia %}
+              <img width="70" height="70"
+                src="{{p.fotografia.url}}"
+                class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
+              {% else %}
+                <img width="270" height="350"
+                src=""
+                class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
+              {% endif%}      
+      </td>
+      
+      <td>Ver</td>>
+      
+      
+    </tr>
+    {% endfor %}

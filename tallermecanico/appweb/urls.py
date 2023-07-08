@@ -34,6 +34,9 @@ urlpatterns = [
     path('informacion_postulante/<id_postulante>/',Inform_postulante,name="Inform_postulante"),
     path('eliminar_postulante/<id_postulante>/', eliminar_postulante, name="eliminar_postulante"),
     path('informacion_atencion/<id_atencion>/',Inform_atenciones,name="Inform_atenciones"),
+    path('informacion_mecanico/<id_mecanico>/',Inform_mecanico,name="Inform_mecanico"),
+    path('busqueda_atenciones/',busquedaAtenciones,name="busqueda_atenciones"),
+    
 ]
     
 

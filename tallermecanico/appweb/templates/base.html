@@ -56,9 +56,10 @@
           
         </ul>
 
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
-            aria-label="Search">
+        <form class="form-inline my-2 my-lg-0">
+          <input id="buscador" name="buscador" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+          <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+          
         </form>
 
         <div class="text-end">
@@ -84,7 +85,8 @@
     </div>
   </header>
 
-
+  <div id="resultado_busqueda" class="container">
+  </div>
   <main>
 
     {% block contenido %}
@@ -115,5 +117,22 @@
     <p>© 2017–2023 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
   </footer>
 </body>
-
+<script>
+  $('#buscador').keypress(function(e){
+    var search_text=this.value
+    console.log(this.value);
+    $.ajax({
+        url: "/busqueda_atenciones?search_text="+search_text,
+        type: "GET",
+        dataType: "html",
+        success: (data) => {
+          console.log(data);
+          $('#resultado_busqueda').html(data);
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
+  });
+</script>
 </html>

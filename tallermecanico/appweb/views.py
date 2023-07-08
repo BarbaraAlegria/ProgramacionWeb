@@ -263,6 +263,14 @@ def Inform_atenciones(request,id_atencion):
     print(data)
     return render(request, "informacion_atencion.html",data)
 
+def Inform_mecanico(request,id_mecanico):
+    mecanico = Mecanico.objects.filter(id_mecanico=id_mecanico)
+    data = {
+        "mecanico" : mecanico
+    }
+    print(data)
+    return render(request, "informacion_mecanico.html",data)
+
 def listar_contacto(request):
     contactos = Contacto.objects.all()
     data = {
@@ -316,6 +324,17 @@ def pagmecanicos(request):
 
     return render(request, "pagmecanicos.html", data)
 
+def busquedaAtenciones(request):
+    
+    text = request.GET.get('search_text', '')
+    categoria=Categoria.objects.filter(nombre_categoria__contains=text).last()
+    print(categoria)
+    aten = Atencion.objects.filter(Estado='Aprobada',categoria=categoria)
+    data = {
+        "aten" : aten
+    }
+
+    return render(request, "resultado_atenciones.html", data)
 
 def registrar_postulante(request):
     data= {
@@ -356,3 +375,7 @@ def eliminar_postulante(request, id_postulante):
     postulante.delete()
     messages.success(request, " postulante eliminado correctamente")
     return redirect(to="lista_postulante")
+
+
+
+

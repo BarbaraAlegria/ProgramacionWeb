@@ -4,29 +4,34 @@
 
 {% block contenido %}
       <!--- Nuestros servicios-->
+      <figure class="figure">
+        <img src="{% static './imagen/servicioFoto.jpeg'%}" class="figure-img img-fluid rounded" alt="...">
+        <figcaption class="figure-caption"></figcaption>
+    </figure>
 
-    </div>
+      
     <div class="container-fluid">
       <h2 class="text-center my-5 fw-light">Nuestro Servicios</h2>
       <div class="row">
         <div class="text-center col-6">
-          <div class="card" style="width: 28rem;">
+          <center><div class="card" style="width: 28rem;">
             <img src="{% static './imagen/mecanico.jpeg'%}" class="img-fluid" alt="...">
             <div class="card-body">
               <h5 class="card-title">Mecánicos</h5>
               <a href="{% url 'pagmecanicos'%}" class="btn btn-primary"></a>
             </div>
-          </div>
+          </div></center>
         </div>
         <div class="text-center col-6">
-          <div class="card" style="width: 28rem;">
+          <center> <div class="card" style="width: 28rem;">
             <img src="{% static './imagen/servicio.jpeg'%}" class="img-fluid" alt="...">
             <br>
             <div class="card-body">
               <h5 class="card-title">Atenciones</h5>
               <a href="{% url 'lista_atenciones_aprobadas' %}" class="btn btn-primary"></a>
             </div>
-          </div>
+          </div></center>
+         
         </div>
       </div>
     </div>
