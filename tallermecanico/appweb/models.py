@@ -21,7 +21,7 @@ class Mecanico(models.Model):
     fecha_nacimiento = models.DateField()
     foto = models.ImageField(null=True, upload_to='mecanicos')
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
-    
+    ######
  
     def __str__(self):
         return self.rut
