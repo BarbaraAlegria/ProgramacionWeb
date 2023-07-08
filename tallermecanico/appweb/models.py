@@ -12,7 +12,7 @@ class Cargo(models.Model):
         return self.nombre
  
 class Mecanico(models.Model):
-    id_atencion = models.AutoField(primary_key=True,default=1)
+    id_mecanico = models.AutoField(primary_key=True,default=1)
     rut = models.CharField(max_length=10)
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=80)
@@ -20,6 +20,7 @@ class Mecanico(models.Model):
     cargo = models.ForeignKey(Cargo, on_delete=models.PROTECT)
     fecha_nacimiento = models.DateField()
     foto = models.ImageField(null=True, upload_to='mecanicos')
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     
  
     def __str__(self):
