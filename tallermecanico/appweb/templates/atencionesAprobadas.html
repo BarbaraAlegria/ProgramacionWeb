@@ -18,12 +18,7 @@
   
     <br>
     <br>
-    Filtro: <select name="filert_cat" id="filter_cat" onchange="filtrar()">
-        <option>Todas</option>
-        {% for cat in list_categoria %}
-          <option value="{{cat.0}}">{{cat.1}}</option>
-        {% endfor %}
-    </select>
+    
     <br>
     <br>
 
@@ -63,8 +58,8 @@
         {% endfor %}
 
         <section>
-          <br>
-          <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás" value="volver atrás"></center>
+
+          <a class="btn btn-secondary btn" href="{% url 'servicio'%}" role="button">Volver</a>
           <div class="contacto my-5">
             <img src="{% static './imagen/dato.png'%}" alt="">
           </div>

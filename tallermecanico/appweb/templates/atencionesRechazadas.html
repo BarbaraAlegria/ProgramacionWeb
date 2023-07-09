@@ -82,6 +82,27 @@
                 {% endif%}      
         </td>
         {% endfor %}
+        {% for p in aprobada %}
+      <tr>
+        <td>{{p.usuario}}</td>
+        <td>{{p.fecha}}</td>
+        <td>{{p.monto}}</td>
+        <td>{{p.Estado}}</td>
+        <td>{{p.Modelo}}</td>
+        <td>{{p.categoria}}</td>
+        <th scope="row">{{p.observacion}}</th>
+        <td>
+          {% if p.fotografia %}
+                <img width="50" height="50"
+                  src="{{p.fotografia.url}}"
+                  class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
+                {% else %}
+                  <img width="270" height="350"
+                  src=""
+                  class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
+                {% endif%}      
+        </td>
+        {% endfor %}
     </tbody>
   </table>
   <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás"

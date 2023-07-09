@@ -39,6 +39,7 @@
         <th scope="col">Nombre</th>
         <th scope="col">Apellido</th>
         <th scope="col">Cargo</th>
+        <th scope="col">Foto</th>
         <th scope="col"> Opciones </th>
       </tr>
     </thead>
@@ -49,6 +50,17 @@
         <td>{{p.nombre}}</td>
         <td>{{p.apellido}}</td>
         <td>{{p.cargo}}</td>
+        <td>
+          {% if p.foto %}
+                <img width="70" height="70"
+                  src="{{p.foto.url}}"
+                  class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
+                {% else %}
+                  <img width="270" height="350"
+                  src=""
+                  class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
+                {% endif%}      
+        </td>
         <td>
           <a href="{% url 'modificar_mecanico' p.rut %}" class="btn btn-success btn-sm" >Modificar </a>
           <a href="#" onclick="eliminarMecanico('{{p.rut}}')" class="btn btn-danger btn-sm" >Eliminar </a>
@@ -61,7 +73,6 @@
   </table>
   <br>
   <br>
-  <center><input type="button" class="btn btn-secondary btn" onclick="history.back()"
-    name="volver atrás" value="volver atrás"></center>
+  <a class="btn btn-secondary btn" href="{% url 'tareasadministrador'%}" role="button">Volver</a>
 </div>
   {% endblock %}

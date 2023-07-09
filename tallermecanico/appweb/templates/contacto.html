@@ -10,22 +10,7 @@
 
 
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-      document.querySelector('#contacto').addEventListener('submit', function(event) {
-        event.preventDefault(); 
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Mensaje Enviado',
-          showConfirmButton: false,
-          timer: 1500
-        }).then(function() {
-          event.target.submit(); 
-        });
-      });
-    });
-  </script>
+
 
     <!--- Franja -->
     <figure class="figure">
@@ -60,8 +45,7 @@
                 <div class="col-8 mt-2">
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </div>
-                <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás"
-                        value="volver atrás"></center>
+                
             </form>
             
             {{mensaje}}

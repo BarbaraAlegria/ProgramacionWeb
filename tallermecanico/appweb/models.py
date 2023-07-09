@@ -13,7 +13,7 @@ class Cargo(models.Model):
  
 class Mecanico(models.Model):
     id_mecanico = models.AutoField(primary_key=True)
-    rut = models.CharField(max_length=10)
+    rut = models.CharField(max_length=15)
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=80)
     edad = models.IntegerField()

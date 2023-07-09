@@ -2,22 +2,7 @@
 {% load crispy_forms_tags %}
 {% block contenido %}
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('#formAtencion').addEventListener('submit', function(event) {
-      event.preventDefault(); 
-      Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Atencion Modificada',
-        showConfirmButton: false,
-        timer: 1500
-      }).then(function() {
-        event.target.submit(); 
-      });
-    });
-  });
-</script>
+
 
 <div class="container mt-5">
   <div class="text-center">

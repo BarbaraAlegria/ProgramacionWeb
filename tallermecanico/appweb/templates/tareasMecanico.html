@@ -6,7 +6,7 @@
   <figure class="text-center">
     <blockquote class="blockquote">
       <p>
-      <h1>Administrador</h1>
+      <h1>Mecánicos</h1>
       </p>
     </blockquote>
     <figcaption class="blockquote-footer">
@@ -25,13 +25,14 @@
       </div>
       <div class="col">
         <a href="{% url 'lista_atencion_rechazada'%}" class="btn btn-primary btn-lg" >Ver estado </a>
+
       </div>
       
       
       <br>
       <br>
-      <br><br><br> <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás"
-        value="volver atrás"></center>
+      <div><a class="btn btn-secondary btn" href="{% url 'sesion'%}" role="button">Volver</a></div>
+      
      
   </div>
 

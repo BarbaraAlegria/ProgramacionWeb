@@ -5,6 +5,7 @@ urlpatterns = [
     path('principal/', principal, name="principal"),
     path('', principal, name="principal"),
     path('contacto/',contacto,name="contacto"),
+    path('servicio/',servicio,name="servicio"),
     path('pagmecanicos/',pagmecanicos,name="pagmecanicos"),
     path('mantenedor/profesional/agregar/', agregar_mecanico , name="agregar_mecanico"),
     path('mantenedor/profesional/listar/', listar_mecanicos , name="listar_mecanicos"),

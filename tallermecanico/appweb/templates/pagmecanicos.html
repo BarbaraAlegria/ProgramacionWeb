@@ -59,13 +59,14 @@
                 {% endif%}      
                 </a>
             
-              
+                <ul class="list-group">
+                  <li class="list-group-item">Nombre: {{p.nombre}} {{p.apellido}}</li>
+                  <li class="list-group-item">Cargo :{{p.cargo}}</li>
+                  
+                </ul>
               
             </figure>
-            <div class="details">
-              <p class="extracto">{{p.nombre}} {{p.apellido}}</br> {{p.cargo}}</p>
-              <p class="rrss"></p>
-            </div>
+            
           </div>
         </div>
         
@@ -73,7 +74,7 @@
 
         <section>
           <br>
-          <center><input type="button" class="btn btn-secondary btn" onclick="history.back()" name="volver atrás" value="volver atrás"></center>
+          <a class="btn btn-secondary btn" href="{% url 'servicio'%}" role="button">Volver</a>
           <div class="contacto my-5">
             <img src="{% static './imagen/dato.png'%}" alt="">
           </div>

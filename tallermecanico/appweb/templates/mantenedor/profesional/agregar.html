@@ -14,16 +14,16 @@
   <form id="formAgregar" method="post" action="" enctype="multipart/form-data"
     oninput='password2.setCustomValidity(password1.value != password2.value ? "Passwords no son iguales." : "")'>
     <div class="form-group">
-      <label for="nombre">Correo:</label>
+      <label for="correo">Correo:</label>
       <input type="email" class="form-control" name="correo" required>
     </div>
     <div class="form-group">
-      <label for="nombre">Password:</label>
+      <label for="password1">Password:</label>
       <input type="password" class="form-control" name="password1" required>
     </div>
 
     <div class="form-group">
-      <label for="nombre">Repita su Password:</label>
+      <label for="password2">Repita su Password:</label>
       <input type="password" class="form-control" name="password2" required>
     </div>
     {% csrf_token %}
@@ -36,5 +36,23 @@
 </form>
 
 </div>
-
+<script type="text/javascript">
+  $(function() {
+    $("#id_rut").rut({formatOn: 'keyup', 
+    validateOn: 'keyup'
+    }).on('rutInvalido', 
+    function(){
+      id_rut.setCustomValidity("RUT Inválido");
+        $(".div_id_rut").addClass("has-danger")
+        $(".input-rut").addClass("form-control-danger")  
+    }).on('rutValido', 
+    function(){ 
+        $(".div_id_rut").removeClass("has-danger")
+        $(".div_id_rut").addClass("has-success")
+        $(".input-rut").removeClass("form-control-danger")
+        $(".input-rut").addClass("form-control-success")
+        id_rut.setCustomValidity('')
+    });
+  });
+</script>
 {% endblock %}

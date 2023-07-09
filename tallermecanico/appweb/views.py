@@ -12,6 +12,7 @@ import logging
 
 
 logger = logging.getLogger(__name__)
+msgFormNotValid="Formulario no valido"
 # Create your views here.
 def principal(request):
     return render(request, "principal.html")
@@ -27,9 +28,9 @@ def contacto(request):
 
         if formulario.is_valid():
             formulario.save()
-            data["mensaje"] = "El contacto se ha guardado"
+            messages.success(request, "Ensaje enviado")
         else:
-            data["mensaje"] = "Ha ocurrido un error!!!"
+            messages.error(request, msgFormNotValid)
             data["form"] = formulario
 
     return render(request, "contacto.html", data)
@@ -73,10 +74,11 @@ def agregar_mecanico(request):
                 mecanico = get_object_or_404(Mecanico, rut=formulario.cleaned_data["rut"])
                 mecanico.usuario=usu
                 mecanico.save()
-                data["mensaje_success"] = "El profesional se ha guardado"
+                messages.success(request, "El profesional se ha guardado")
+                
                 return redirect(to="listar_mecanicos")
         else:
-            data["mensaje_error"] = "Hubo un error"
+            messages.error(request, msgFormNotValid)
             data["form"] = formulario
     
     return render(request, "mantenedor/profesional/agregar.html", data)
@@ -104,9 +106,10 @@ def modificar_mecanico(request,rut):
         formulario = MecanicoForm(data=request.POST, files=request.FILES, instance=mecanico)
         if formulario.is_valid():
             formulario.save()
+            messages.success(request, "Mecánico modificado con exito")
             return redirect(to="listar_mecanicos")
         else:
-            data["mensaje"] = "Hubo un error"
+            messages.error(request, msgFormNotValid)
             data["form"] =  formulario
 
 
@@ -163,7 +166,7 @@ def registro_mecanico(request):
                 login(request, user)
                 return redirect(to='principal')
             except:
-                data["mensaje"] = "Error"
+                messages.error(request, msgFormNotValid)
     return render(request, "registration/registro.html", data)
 
 
@@ -186,12 +189,14 @@ def registrar_atencion(request):
             atencion = formulario.save(commit=False)
             atencion.usuario = request.user
             formulario.save()
-            data["mensaje"] = "La atencion se ha registrado"
+            messages.success(request, "La atencion se ha registrado")
+            return redirect(to="tareasMecanico")
         else:
-            data["mensaje"] = "Hubo un error"
+            messages.error(request, msgFormNotValid)
             data["form"] = formulario
   
     return render(request, "atencion.html",data)
+    
 
 
 
@@ -237,7 +242,7 @@ def eliminar_atencion(request, id_atencion):
     atencion.motivoRechazo=motivo_rechazo
 
     atencion.save()
-    messages.success(request, "Rechazada")
+    messages.success(request, "Atencion rechazada")
     return redirect(to="lista_atencion")
 
 @login_required(login_url='/accounts/login')
@@ -246,10 +251,13 @@ def lista_atencion_rechazada(request):
     
     pendientes = Atencion.objects.filter(Estado='Pendiente', usuario=usuario_logueado)
     rechazado = Atencion.objects.filter(Estado='Rechazada', usuario=usuario_logueado)
+    aprobada = Atencion.objects.filter(Estado='Aprobada', usuario=usuario_logueado)
     
     data = {
         "rechazado": rechazado,
-        "pendientes": pendientes
+        "pendientes": pendientes,
+        "aprobada": aprobada
+
     }
     print(data)
     return render(request, "atencionesRechazadas.html", data)
@@ -268,9 +276,10 @@ def modificar_atencion(request,id_atencion):
         if formulario.is_valid():
             atencion.Estado='Pendiente'
             formulario.save()
+            messages.success(request, "La atencion se ha modificado con exito")
             return redirect(to="lista_atencion_rechazada")
         else:
-            data["mensaje"] = "Hubo un error"
+            messages.error(request, msgFormNotValid)
             data["form"] =  formulario
 
 
@@ -373,9 +382,10 @@ def registrar_postulante(request):
         formulario = PostulanteForm(data=request.POST, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
-            data["mensaje"] = "La atencion se ha registrado"
+            messages.success(request, "Postulacion enviada")
+            
         else:
-            data["mensaje"] = "Hubo un error"
+            messages.error(request, msgFormNotValid)
             data["form"] = formulario
   
     return render(request, "formulario_postulante.html",data)

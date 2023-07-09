@@ -18,6 +18,7 @@
 
     {% load static %}
   <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
+  <script src="{% static 'js/jquery.rut.js' %}"></script>
     <title>Principal</title>
 
 
@@ -89,6 +90,7 @@
             
           </a>
         </div>
+        
       </div>
     </div>
   </header>
@@ -96,18 +98,7 @@
       
     
  
-  <div class="text-center">
-    {% if mensaje_error|length > 0 %}
-    <p class="p-1 alert alert-danger" role="alert">
-      {{mensaje_error}}
-    </p>
-    {% endif %}
-    {% if mensaje_success|length > 0 %}
-    <p class="p-1 alert alert-success" role="alert">
-      {{mensaje_success}}
-    </p>
-    {% endif %}
-  </div>
+ 
   <main>
     
     {% block contenido %}
@@ -118,7 +109,18 @@
 
   <div id=""contenido>
         {% if messages %}
+        
           {% for m in messages%}
+
+            {% if m.tags == "error" %}
+            <script>
+              Swal.fire({
+                "title": "Error",
+                "text": "{{m}}",
+                "icon": "{{m.tags}}"
+                    })
+            </script>
+            {% else%}
             <script>
               Swal.fire({
                 "title": "Felicitaciones",
@@ -126,6 +128,8 @@
                 "icon": "{{m.tags}}"
                     })
             </script>
+            {% endif %}
+            
           {% endfor %}
         {% endif %}
 
