@@ -2,7 +2,26 @@
 
 {% block contenido %}
 
+<script>
+  function eliminarMensaje(id_contacto)
+  {
+    Swal.fire({
+      "title": "Advertencia",
+      "text": "¿Esta seguro que desea eliminar este mensaje?",
+      "icon": "question",
+      "showCancelButton": true,
+      "cancelButtonText": "No, cancelar",
+      "confirmButtonText":"Si, eliminar"
+    }).then(function(result){
 
+      if(result.isConfirmed)
+      {
+        window.location.href="/eliminar_mensaje/"+id_contacto+"/";
+      }
+
+    })
+  }
+</script>
 
 
 
@@ -38,7 +57,7 @@
                 
         
         <td>
-            <a href="#" class="btn btn-success btn-sm" >Modificar </a>
+          <a href="#" onclick="eliminarMensaje('{{p.id_contacto}}')" class="btn btn-danger btn-sm" >Eliminar </a>
 
         </td>
       </tr>

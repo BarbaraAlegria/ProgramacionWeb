@@ -1,22 +1,7 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block contenido %}
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('#formPostulante').addEventListener('submit', function(event) {
-      event.preventDefault(); // Evita el envío del formulario
-      Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Formulario Enviado',
-        showConfirmButton: false,
-        timer: 1500
-      }).then(function() {
-        event.target.submit(); // Envía el formulario después de mostrar el mensaje
-      });
-    });
-  });
-</script>
+
 
 
 
@@ -32,8 +17,7 @@
       </figcaption>
     <button type="submit" class="btn btn-primary">Enviar</button>
     <button type="reset" class="btn btn-danger">Limpiar</button>
-    <center><input type="button" class="btn btn-secondary btn" onclick="history.back()"
-      name="volver atrás" value="volver atrás"></center>
+    <a class="btn btn-secondary btn" href="{% url 'principal'%}" role="button">Salir</a>
 
 
       

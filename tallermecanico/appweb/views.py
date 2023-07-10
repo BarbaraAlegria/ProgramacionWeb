@@ -383,6 +383,7 @@ def registrar_postulante(request):
         if formulario.is_valid():
             formulario.save()
             messages.success(request, "Postulacion enviada")
+            return redirect(to="principal")
             
         else:
             messages.error(request, msgFormNotValid)
@@ -414,6 +415,12 @@ def eliminar_postulante(request, id_postulante):
     messages.success(request, " postulante eliminado correctamente")
     return redirect(to="lista_postulante")
 
+def eliminar_mensaje(request, id_contacto):
+    mensaje = get_object_or_404(Contacto, id_contacto=id_contacto)
+
+    mensaje.delete()
+    messages.success(request, "Mensaje eliminado")
+    return redirect(to="lista_contacto")
 
 
 
