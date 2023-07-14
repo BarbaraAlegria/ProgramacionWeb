@@ -14,9 +14,9 @@
       <h2 class="text-center my-6 fw-light">Inicio De Sesión</h2>
       <br>
       <br>
-      <div class="row">
+      <div class="row" id="menu">
         <div class="text-center col-6">
-          <center><div class="card" style="width: 28rem;">
+          <center><div class="card" style="width: 28rem;" >
             <img src="{% static './imagen/mecanico.jpeg'%}" class="img-fluid" alt="...">
             <div class="card-body">
               <a href="{% url 'tareasMecanico'%}" class="btn btn-primary">Mecánicos</a>
@@ -24,10 +24,8 @@
           </div></center>
         </div>
         <div class="text-center col-6">
-         <center> <div class="card" style="width: 28rem;">
+          <center><div class="card" style="width: 28rem;" >
           <img src="{% static './imagen/administrador.jpg'%}" class="img-fluid" alt="...">
-          <br>
-          <br>
           <div class="card-body">
             <a href="{% url 'tareasadministrador'%}" class="btn btn-primary">Administrador</a>
           </div>

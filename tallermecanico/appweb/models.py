@@ -34,7 +34,7 @@ list_tipo_contacto = [
 ]
 
 class Contacto(models.Model):
-    id_contacto = models.AutoField(primary_key=True, default=1)
+    id_contacto = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50)
     email = models.EmailField()
     telefono = models.IntegerField()
